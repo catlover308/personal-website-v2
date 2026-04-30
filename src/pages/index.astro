@@ -7,11 +7,24 @@
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<link rel="stylesheet" href="/src/styles/global.css" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Bryce Lee</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<h1 class="tomorrow-semibold">Bryce Lee</h1>
+		<h2 class="tomorrow-regular">Prospective Civil Engineer</h2>
 	</body>
 </html>
+
+<script>
+	import Lenis from "lenis";
+	const lenis = new Lenis({
+		autoRaf: true,
+		//		infinite: true,
+	});
+	lenis.on("scroll", (e) => {
+		console.log(e);
+	});
+</script>
