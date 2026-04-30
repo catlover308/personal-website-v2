@@ -11,10 +11,46 @@
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Bryce Lee</title>
+		<style>
+			html {
+				scroll-snap-type: y mandatory;
+				height: fill;
+				scroll-snap-align: start;
+			}
+			section 1 {
+				height: 100vh;
+				scroll-snap-align: start;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: Georgia, serif;
+				font-size: 32px;
+			}
+			.page1 {
+				background-color: #f0f0f0;
+			}
+			.page2 {
+				background-color: #f0f0f0;
+			}
+			.page3 {
+				background-color: #f0f0f0;
+			}
+		</style>
 	</head>
 	<body>
-		<h1 class="tomorrow-semibold">Bryce Lee</h1>
-		<h2 class="tomorrow-regular">Prospective Civil Engineer</h2>
+		<div class="nav-top">
+			<div class="first-link"></div>
+			<div class="second-link"></div>
+			<div class="third-link"></div>
+		</div>
+		<div class="hero-name">
+			<h1 class="tomorrow-semibold">Bryce Lee</h1>
+		</div>
+		<div class="hero-subtitle">
+			<h2 class="tomorrow-regular">
+				Aspiring Engineer in Santa Clarita, CA
+			</h2>
+		</div>
 	</body>
 </html>
 
