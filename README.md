@@ -11,10 +11,11 @@ I do plan on adding a lot more technically advanced features as I learn, maybe r
 # AI Declaration:
 I used [Antigravity](https://antigravity.google) as an IDE and integrated AI assistant to assist with explaining concepts, syntax, and steps to debug. 
 
-The vast majority of the code was not directly edited by its agent. 
+The majority of the code was not directly edited by its agent. 
 
 However, the following were partially or mostly made with the help of AI:
-- GSAP scrolling logic
+- GSAP animation carousel & lenis implementation
+    - Mostly the carousel and infinite scroll math and logic
 
 # Inspirations
 - [reframe.systems](https://reframe.systems/)

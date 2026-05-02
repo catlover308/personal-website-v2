@@ -31,22 +31,76 @@ import Cool4 from "../pages/components/cool4.astro";
 	import gsap from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 	import Lenis from "lenis";
+	// src/pages/index.astro
+
+	// 1. We keep your existing Lenis setup
 	const lenis = new Lenis({
 		autoRaf: true,
 		infinite: true,
 	});
-	lenis.on("scroll", (e) => {
-		console.log(e);
+
+	// 2. THE MANUAL LOOP (This is the "Pro" way)
+	// We listen for the scroll, and if we get near the end, we jump to the middle.
+	lenis.on("scroll", ({ scroll, limit }) => {
+		// If we are within 10px of the bottom, jump to the middle
+		if (scroll > limit - 10) {
+			lenis.scrollTo(limit / 2, { immediate: true });
+		}
+		// If we are within 10px of the top, jump to the middle
+		if (scroll < 10) {
+			lenis.scrollTo(limit / 2, { immediate: true });
+		}
 	});
-	lenis.on("scroll", ScrollTrigger.update);
-	gsap.registerPlugin(ScrollTrigger);
+
+	// 3. Keep your snapping logic, but let's cache the totalScroll
+	// (Calculating document height inside the snap function can be slow)
+
+	const sections = gsap.utils.toArray(
+		".lander-wrapper, .projects-wrapper, .info-wrapper, .coolstuff-wrapper",
+	);
+
+	// src/pages/index.astro
 
 	ScrollTrigger.create({
 		snap: {
-			snapTo: 1 / 7, // Snap to 8 sections (4 originals + 4 clones = 8 spots)
-			duration: 0.5,
-			delay: 0.1,
-			ease: "power1.inOut",
+			snapTo: (progress: number): number => {
+				// 1. Find all your section points
+				const sectionProgressPoints = sections.map((section: any) => {
+					const sectionCenter =
+						section.offsetTop + section.offsetHeight / 2;
+					const stopPosition = sectionCenter - window.innerHeight / 2;
+					const totalScroll =
+						document.documentElement.scrollHeight -
+						window.innerHeight;
+					return stopPosition / totalScroll;
+				});
+
+				// 2. Find the closest snap point
+				const closest = gsap.utils.snap(
+					sectionProgressPoints,
+					progress,
+				);
+
+				// 3. THE "NO JUMP" FILTER
+				// If the snap point is more than 15% of the page away, don't snap.
+				// This prevents GSAP from "fighting" Lenis during the infinite loop jump.
+				const distance = Math.abs(closest - progress);
+				if (distance > 0.15) {
+					return progress;
+				}
+
+				return closest;
+			},
+			duration: 0.4,
+			delay: 0.05,
+			ease: "power2.out",
 		},
 	});
+
+	// This tells GSAP to recalculate everything once the page is fully loaded
+	window.addEventListener("load", () => {
+		ScrollTrigger.refresh();
+	});
+	// Start in the middle so we can scroll up or down infinitely immediately
+	lenis.scrollTo(document.body.scrollHeight / 2, { immediate: true });
 </script>

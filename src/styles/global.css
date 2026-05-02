@@ -19,7 +19,7 @@ body {
     padding-left: 24px;
     padding-right: 24px;
     padding-top: 24px;
-    padding-bottom: 12px;
+    padding-bottom: 24px;
 
     .lander-card {
         height: 100%;
@@ -61,8 +61,8 @@ body {
     margin: 0px;
     padding-left: 24px;
     padding-right: 24px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 
     .projects-row {
         height: 100%;
@@ -70,10 +70,99 @@ body {
         border: 0.5px solid black;
         border-radius: 12px;
         background-color: #ADD9F4;
+        padding: 0px;
+        margin-bottom: 0px;
+        display: flex;
+        flex-shrink: 0;
+    }
+}
+
+/* info card */
+.info-wrapper {
+    height: 100vh;
+    width: 100vw;
+    border: transparent;
+    box-sizing: border-box;
+    margin: 0px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+
+    .info-card {
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        border: 0px solid black;
+        border-radius: 12px;
+        background-color: #ADD9F4;
         padding: 24px;
         margin-bottom: 48px;
         display: flex;
-        flex-shrink: 0;
+
+        /*info containers*/
+        .info-name-container {
+            display: flex;
+            width: 100%;
+            margin: 0px;
+            box-sizing: border-box;
+            border: 0px solid red;
+        }
+
+        .info-subtitle-container {
+            display: flex;
+            width: 100%;
+            box-sizing: border-box;
+            border: 0px solid green;
+        }
+
+
+    }
+}
+
+/* cool stuff card */
+.coolstuff-wrapper {
+    height: 100vh;
+    width: 100vw;
+    border: transparent;
+    box-sizing: border-box;
+    margin: 0px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+
+    .coolstuff-card {
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        border: 3px solid black;
+        border-radius: 12px;
+        background-color: transparent;
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-bottom: 48px;
+        display: flex;
+
+        /*coolstuff containers*/
+        .coolstuff-name-container {
+            display: flex;
+            width: 100%;
+            margin: 0px;
+            box-sizing: border-box;
+            border: 0px solid red;
+        }
+
+        .coolstuff-subtitle-container {
+            display: flex;
+            width: 100%;
+            box-sizing: border-box;
+            border: 0px solid green;
+        }
+
+
     }
 }
 
