@@ -2,72 +2,123 @@
 
 /* create a container so that the pages dont overlapp */
 
+body {
+    background-color: #F0F0F0;
+    font-size: 24px;
+    margin: 0px;
+    padding: 0px;
+}
+
 .section-wrapper {
     height: 100vh;
     width: 100vw;
-    background-color: transparent;
-    justify-content: center;
-    border: 10px solid black;
-    box-sizing: padding-box;
+    border: transparent;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 24px;
+
+    .card {
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        border: 0.5px solid black;
+        border-radius: 13px;
+        background-color: #F0F0C9;
+        padding: 24px;
+
+        /*lander containers*/
+        .lander-name-container {
+            display: flex;
+            width: 100%;
+            margin: 0px;
+            box-sizing: border-box;
+            border: 0.5px solid red;
+        }
+
+        .lander-subtitle-container {
+            display: flex;
+            width: 100%;
+            box-sizing: border-box;
+            border: 0.5px solid green;
+        }
+
+        /*projects containers*/
+        .projects-header-container {
+            display: flex;
+            width: fit-content;
+            padding-left: 0%;
+            padding-top: 16.2%;
+            margin: auto;
+            box-sizing: border-box;
+            border: 0.5px solid red;
+        }
+
+        .projects-subtitle-container {
+            display: flex;
+            width: fit-content;
+            padding-left: 0%;
+            padding-top: 26%;
+            margin: auto;
+            box-sizing: border-box;
+            border: 0.5px solid green;
+        }
+
+        /*info containers*/
+        .info-name-container {
+            display: flex;
+            width: fit-content;
+            padding-left: 0%;
+            padding-top: 16.2%;
+            margin: auto;
+            box-sizing: border-box;
+            border: 0.5px solid red;
+        }
+
+        .info-subtitle-container {
+            display: flex;
+            width: fit-content;
+            padding-left: 0%;
+            padding-top: 26%;
+            margin: auto;
+            box-sizing: border-box;
+            border: 0.5px solid green;
+        }
+
+        /*coolstuff containers*/
+        .coolstuff-name-container {
+            display: flex;
+            width: fit-content;
+            padding-left: 0%;
+            padding-top: 16.2%;
+            margin: auto;
+            box-sizing: border-box;
+            border: 0.5px solid red;
+        }
+
+        .coolstuff-subtitle-container {
+            display: flex;
+            width: fit-content;
+            padding-left: 0%;
+            padding-top: 26%;
+            margin: auto;
+            box-sizing: border-box;
+            border: 0.5px solid green;
+        }
+    }
 }
 
-.coolstuff-wrapper {
+.waves-wrapper {
     height: 100vh;
     width: 100vw;
     background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 10px solid black;
-    box-sizing: padding-box;
-}
-
-body {
-    background-color: #F0F0F0;
-    font-size: 24px;
-    /* scroll-behavior: smooth; */
-    /* scroll-snap-type: y mandatory; */
-}
-
-.lander-name {
-    display: flex;
-    width: fit-content;
-    padding-left: 0%;
-    padding-top: 0%;
-    margin: auto;
+    border: 0px solid black;
     box-sizing: border-box;
-    border: 10px solid red;
 }
 
-.lander-subtitle {
-    display: flex;
-    width: fit-content;
-    padding-left: 0%;
-    padding-top: 0%;
-    margin: auto;
-    box-sizing: border-box;
-    border: 10px solid green;
-}
-
-.projects-header {
-    display: flex;
-    width: fit-content;
-    padding-left: 0%;
-    padding-top: 16.2%;
-    margin: auto;
-    box-sizing: border-box;
-    border: 10px solid red;
-}
-
-.projects-subtitle {
-    display: flex;
-    width: fit-content;
-    padding-left: 0%;
-    padding-top: 26%;
-    margin: auto;
-    box-sizing: border-box;
-    border: 10px solid green;
-}
+/* text */
 
 h1 {
     color: #00A0DF;
@@ -79,19 +130,21 @@ h2 {
     font-size: 3rem;
 }
 
+/*lander text in card*/
 .lander-name h1 {
     color: #00A0DF;
     font-size: 6rem;
-    box-sizing: padding-box;
-    height: 50vh;
-    width: 100vw;
-    justify-content: center;
+    box-sizing: border-box;
+    width: fit-content;
+    height: fit-content;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .lander-subtitle h2 {
     color: #0091B3;
     font-size: 3rem;
-    box-sizing: padding-box;
+    box-sizing: border-box;
     height: 50vh;
     width: 100vw;
     padding-top: 0px;
@@ -99,112 +152,98 @@ h2 {
     justify-content: center;
 }
 
-.tomorrow-thin {
+.tomorrow-fonts {
     font-family: "Tomorrow", sans-serif;
-    font-weight: 100;
-    font-style: normal;
-}
 
-.tomorrow-extralight {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 200;
-    font-style: normal;
-}
+    .tomorrow-thin {
+        font-weight: 100;
+        font-style: normal;
+    }
 
-.tomorrow-light {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-}
+    .tomorrow-extralight {
+        font-weight: 200;
+        font-style: normal;
+    }
 
-.tomorrow-regular {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
+    .tomorrow-light {
+        font-weight: 300;
+        font-style: normal;
+    }
 
-.tomorrow-medium {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-}
+    .tomorrow-regular {
+        font-weight: 400;
+        font-style: normal;
+    }
 
-.tomorrow-semibold {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-}
+    .tomorrow-medium {
+        font-weight: 500;
+        font-style: normal;
+    }
 
-.tomorrow-bold {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
+    .tomorrow-semibold {
+        font-weight: 600;
+        font-style: normal;
+    }
 
-.tomorrow-extrabold {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 800;
-    font-style: normal;
-}
+    .tomorrow-bold {
+        font-weight: 700;
+        font-style: normal;
+    }
 
-.tomorrow-black {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 900;
-    font-style: normal;
-}
+    .tomorrow-extrabold {
+        font-weight: 800;
+        font-style: normal;
+    }
 
-.tomorrow-thin-italic {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 100;
-    font-style: italic;
-}
+    .tomorrow-black {
+        font-weight: 900;
+        font-style: normal;
+    }
 
-.tomorrow-extralight-italic {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 200;
-    font-style: italic;
-}
+    .tomorrow-thin-italic {
+        font-weight: 100;
+        font-style: italic;
+    }
 
-.tomorrow-light-italic {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 300;
-    font-style: italic;
-}
+    .tomorrow-extralight-italic {
+        font-weight: 200;
+        font-style: italic;
+    }
 
-.tomorrow-regular-italic {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 400;
-    font-style: italic;
-}
+    .tomorrow-light-italic {
+        font-weight: 300;
+        font-style: italic;
+    }
 
-.tomorrow-medium-italic {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 500;
-    font-style: italic;
-}
+    .tomorrow-regular-italic {
+        font-weight: 400;
+        font-style: italic;
+    }
 
-.tomorrow-semibold-italic {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 600;
-    font-style: italic;
-}
+    .tomorrow-medium-italic {
+        font-weight: 500;
+        font-style: italic;
+    }
 
-.tomorrow-bold-italic {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-}
+    .tomorrow-semibold-italic {
+        font-weight: 600;
+        font-style: italic;
+    }
 
-.tomorrow-extrabold-italic {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 800;
-    font-style: italic;
-}
+    .tomorrow-bold-italic {
+        font-weight: 700;
+        font-style: italic;
+    }
 
-.tomorrow-black-italic {
-    font-family: "Tomorrow", sans-serif;
-    font-weight: 900;
-    font-style: italic;
+    .tomorrow-extrabold-italic {
+        font-weight: 800;
+        font-style: italic;
+    }
+
+    .tomorrow-black-italic {
+        font-weight: 900;
+        font-style: italic;
+    }
 }
 
 .space-grotesk-italic {
