@@ -27,14 +27,66 @@ import Cool4 from "../pages/components/cool4.astro";
 					</h2>
 				</div>
 			</div>
+			<!-- <svg
+				style="position:fixed; top:0; left:0; width:100%; height:100%;"
+			>
+			</svg> -->
+			<svg>
+				<path
+					id="trace"
+					d=""
+					fill="none"
+					stroke="black"
+					stroke-width="2"
+				>
+				</path>
+				<scrolltext dy="-10">
+					<textpath
+						id="scrollingtext"
+						href="#trace"
+						text-anchor="middle"
+					>
+						ttesteiojdmsfijlkanmdjaskljdmsjlasmdkjsalm
+					</textpath>
+				</scrolltext>
+			</svg>
 		</div>
 	</body>
-</html>
 
-<script>
-	const card = document.querySelector(".lander-card") as HTMLElement;
-	const rect = card?.getBoundingClientRect();
-	const textoffset = 12;
-	const cardradius = 24;
-	const path = `M ${rect.x + cardradius},${rect.y + textoffset} L${rect.right - cardradius},${rect.y + textoffset} A ${cardradius} ${cardradius} 0 0 1 ${rect.right - cardradius},${rect.y + textoffset}`;
-</script>
+	<script>
+		const card = document.querySelector(".lander-card") as HTMLElement;
+		function refresh() {
+			const rect = card?.getBoundingClientRect();
+			const textoffset = 24;
+			const cardradius = 48;
+			const path = `M ${rect.x + cardradius},${rect.y + textoffset} 
+			L${rect.right - cardradius} ${rect.y + textoffset} 
+			Q ${rect.right - textoffset} ${rect.y + textoffset} ${rect.right - textoffset} ${rect.y + cardradius} 
+			L ${rect.right - textoffset} ${rect.bottom - cardradius} 
+			Q ${rect.right - textoffset} ${rect.bottom - textoffset} ${rect.right - cardradius} ${rect.bottom - textoffset} 
+			L${rect.left + cardradius} ${rect.bottom - textoffset} 
+			Q ${rect.left + textoffset} ${rect.bottom - textoffset} ${rect.left + textoffset} ${rect.bottom - cardradius}
+			L ${rect.left + textoffset} ${rect.y + cardradius} 
+			Q ${rect.left + textoffset} ${rect.y + textoffset} ${rect.left + cardradius} ${rect.y + textoffset} Z`;
+			const svgpath = document.querySelector("path") as SVGPathElement;
+			svgpath.setAttribute("d", path);
+			svgpath.setAttribute("id", "trace");
+		}
+		new ResizeObserver(refresh).observe(card);
+		refresh();
+		const scrollingtext = document.querySelector(
+			"#scrollingtext",
+		) as SVGTextPathElement;
+		let position = 0;
+		function animate() {
+			position += 0.1;
+			if (position > 100) position = 0;
+			scrollingtext.setAttribute(
+				"startOffset",
+				position.toString() + "%",
+			);
+			requestAnimationFrame(animate);
+		}
+		animate();
+	</script>
+</html>
