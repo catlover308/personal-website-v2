@@ -16,71 +16,25 @@ import Cool4 from "../pages/components/cool4.astro";
 		<title>Bryce Lee</title>
 	</head>
 	<body>
-		<Landing1 />
-		<Projects2 />
-		<Info3 />
-		<Cool4 />
-		<Landing1 />
-		<Projects2 />
-		<Info3 />
-		<Cool4 />
-		<Landing1 />
-		<Projects2 />
-		<Info3 />
-		<Cool4 />
+		<div class="lander-wrapper">
+			<div class="lander-card">
+				<div class="lander-name-container">
+					<h1 class="tomorrow-semibold">Bryce Lee</h1>
+				</div>
+				<div class="lander-subtitle-container">
+					<h2 class="tomorrow-regular">
+						Aspiring Engineer in Santa Clarita, CA
+					</h2>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
 
 <script>
-	import gsap from "gsap";
-	import { ScrollTrigger } from "gsap/ScrollTrigger";
-	import Lenis from "lenis";
-	gsap.registerPlugin(ScrollTrigger);
-	const lenis = new Lenis({
-		autoRaf: true,
-	});
-	const allSections = gsap.utils.toArray<HTMLElement>(
-		".lander-wrapper, .projects-wrapper, .info-wrapper, .coolstuff-wrapper",
-	);
-	const loopDistance = allSections[4].offsetTop - allSections[0].offsetTop;
-
-	let isJumping = false;
-
-	lenis.on("scroll", ({ scroll }: { scroll: number }) => {
-		if (isJumping) return;
-
-		let offset = 0;
-
-		if (scroll >= loopDistance * 2) {
-			offset = -loopDistance;
-		} else if (scroll < loopDistance) {
-			offset = loopDistance;
-		}
-
-		if (offset !== 0) {
-			isJumping = true;
-			const l = lenis as any;
-			l.targetScroll += offset;
-			l.animatedScroll += offset;
-			l.animate.value += offset;
-			l.animate.from += offset;
-			l.animate.to += offset;
-			window.scrollTo({
-				top: l.animatedScroll,
-				behavior: "instant" as any,
-			});
-			l._preventNextNativeScrollEvent = true;
-			requestAnimationFrame(() => {
-				isJumping = false;
-			});
-			return;
-		}
-
-		ScrollTrigger.update();
-	});
-
-	window.addEventListener("load", () => {
-		lenis.scrollTo(loopDistance, { immediate: true });
-		ScrollTrigger.refresh();
-	});
+	const card = document.querySelector(".lander-card") as HTMLElement;
+	const rect = card?.getBoundingClientRect();
+	const textoffset = 12;
+	const cardradius = 24;
+	const path = `M ${rect.x + cardradius},${rect.y + textoffset} L${rect.right - cardradius},${rect.y + textoffset} A ${cardradius} ${cardradius} 0 0 1 ${rect.right - cardradius},${rect.y + textoffset}`;
 </script>

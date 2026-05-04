@@ -8,14 +8,14 @@ This is my literally my first programming project, so it's kind of generic... it
 
 I do plan on adding a lot more technically advanced features as I learn, maybe redoing it with more assets, animations, etc. I'll also add more blog posts, projects, and probably a page of some curated fun stuff that I find.
 
+Hint: click the special fish
+
+Updated: 5/4/2026
+
 # AI Declaration:
 I used [Antigravity](https://antigravity.google) as an IDE and integrated AI assistant to assist with explaining concepts, syntax, and steps to debug. 
 
 The majority of the code was not directly edited by its agent. 
-
-However, the following were partially or mostly made with the help of AI:
-- GSAP animation carousel & lenis implementation
-    - Mostly the carousel and infinite scroll math and logic
 
 # Inspirations
 - [reframe.systems](https://reframe.systems/)
