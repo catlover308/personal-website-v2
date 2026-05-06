@@ -20,6 +20,12 @@ import cardframe from "../pages/components/cardframe.astro";
 						>Bryce Lee</lander-name
 					>
 				</div>
+				<div
+					id="lander-subtitle"
+					class="font-['Space_Grotesk'] italic text-[36px] text-left text-[#F0F0F0] font-medium tracking-tight"
+				>
+					placeholder for subtitle text to scroll
+				</div>
 				<div class="social-buttons-container">
 					<!-- email -->
 					<button id="email" class="social-buttons">
@@ -118,7 +124,7 @@ import cardframe from "../pages/components/cardframe.astro";
 						</svg>
 					</button>
 					<!-- discord -->
-					<button class="social-buttons" onclick="copydiscord()">
+					<button id="discord" class="social-buttons">
 						<svg
 							width="48"
 							height="48"
@@ -161,10 +167,11 @@ import cardframe from "../pages/components/cardframe.astro";
 		navigator.clipboard.writeText("hi@brycel.net");
 		return true;
 	});
-	function copydiscord() {
+	const discordbutton = document.querySelector("#discord") as HTMLElement;
+	discordbutton.addEventListener("click", () => {
 		navigator.clipboard.writeText("brycel307");
 		return true;
-	}
+	});
 	// #endregion
 	// #region create dynamic SVG for scrolling text
 	// hand coded

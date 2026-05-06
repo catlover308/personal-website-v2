@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
 
 /* create a container so that the pages dont overlapp */
 
-html,
-
-::selection {
-    background-color: #0091B3;
+html, ::selection {
+    background-color: #B14FC5;
     color: #F0F0F0;
 }
+
 body {
-    background-color: #F0F0F0;
+    background-color: #f5f5f5;
     font-size: 24px;
     margin: 0px;
     padding: 0px;
@@ -53,7 +53,7 @@ body::-webkit-scrollbar {
         box-sizing: border-box;
         border: 0px solid black;
         border-radius: 48px;
-        background-color: #ADD9F4;
+        background-color: #002E6D;
         padding: 48px;
         margin-bottom: 48px;
         display: flex;
@@ -80,7 +80,7 @@ body::-webkit-scrollbar {
             box-sizing: border-box;
             border: 0px solid red;
             height: fit-content;
-            font-size: clamp(1rem, 48px, 6rem);
+            font-size: 64px;
             word-break: break-word;
             margin-top: 0px;
         }
@@ -117,7 +117,7 @@ body::-webkit-scrollbar {
 }
 
 .social-buttons svg {
-    color: black;
+    color: #adacb5;
 }
 
 .social-buttons:hover svg{
@@ -158,12 +158,6 @@ h1 {
 h2 {
     color: #0091B3;
     font-size: 3rem;
-}
-
-h1.lander-name {
-    font-size: clamp(1rem, 48px, 6rem);
-    word-break: break-word;
-    margin-top: 0px;
 }
 
 /* #endregion */
