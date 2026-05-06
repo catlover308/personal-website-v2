@@ -1,9 +1,9 @@
 ---
 import "../styles/global.css";
-import Info3 from "../pages/components/info3.astro";
-import Projects2 from "../pages/components/projects2.astro";
-import Landing1 from "../pages/components/landing1.astro";
-import Cool4 from "../pages/components/cool4.astro";
+// import Info3 from "../pages/components/info3.astro";
+// import Projects2 from "../pages/components/projects2.astro";
+// import Landing1 from "../pages/components/landing1.astro";
+// import Cool4 from "../pages/components/cool4.astro";
 ---
 
 <html lang="en">
@@ -22,17 +22,38 @@ import Cool4 from "../pages/components/cool4.astro";
 					<h1 class="tomorrow-semibold">Bryce Lee</h1>
 				</div>
 				<div class="lander-subtitle-container">
-					<h2 class="tomorrow-regular">
+					<!-- <h2 class="tomorrow-regular">
 						Aspiring Engineer in Santa Clarita, CA
-					</h2>
+					</h2> -->
 				</div>
-				<div class="social-links">aodskjlk</div>
 			</div>
-
-			<!-- <svg
-				style="position:fixed; top:0; left:0; width:100%; height:100%;"
-			>
-			</svg> -->
+			<!-- #region buttons -->
+			<!-- email -->
+			<button class="social-buttons" onclick="copyemail()">
+				<svg> <img src="../assets/email.svg" alt="" /></svg>
+			</button>
+			<!-- github -->
+			<button class="social-buttons" onclick="copygithub()">
+				<svg> <img src="../assets/github.svg" alt="" /></svg>
+			</button>
+			<!-- twitter -->
+			<button class="social-buttons" onclick="copytwitter()">
+				<svg> <img src="../assets/twitter.svg" alt="" /></svg>
+			</button>
+			<!-- instagram -->
+			<button class="social-buttons" onclick="copyinstagram()">
+				<svg> <img src="../assets/instagram.svg" alt="" /></svg>
+			</button>
+			<!-- linkedin -->
+			<button class="social-buttons" onclick="copylinkedin()">
+				<svg> <img src="../assets/linkedin.svg" alt="" /></svg>
+			</button>
+			<!-- discord -->
+			<button class="social-buttons" onclick="copydiscord()">
+				<svg> <img src="../assets/discord.svg" alt="" /></svg>
+			</button>
+			<!-- #endregion -->
+			<!-- #region scrolling text -->
 			<svg>
 				<path
 					id="trace"
@@ -52,10 +73,14 @@ import Cool4 from "../pages/components/cool4.astro";
 					</textpath>
 				</scrolltext>
 			</svg>
+			<!-- #endregion -->
 		</div>
+		<div class="project-card"></div>
+		<div class="info-card"></div>
+		<div class="curated-card"></div>
 	</body>
-
 	<script>
+		// #region hand coded, creates dynamic SVG for scrolling text
 		const card = document.querySelector(".lander-card") as HTMLElement;
 		function refresh() {
 			const rect = card?.getBoundingClientRect();
@@ -74,6 +99,8 @@ import Cool4 from "../pages/components/cool4.astro";
 			svgpath.setAttribute("d", path);
 			svgpath.setAttribute("id", "trace");
 		}
+		// #endregion
+		// #region thanks claude
 		new ResizeObserver(refresh).observe(card);
 		refresh();
 		const scrollingtext = document.querySelector(
@@ -90,5 +117,6 @@ import Cool4 from "../pages/components/cool4.astro";
 			requestAnimationFrame(animate);
 		}
 		animate();
+		// #endregion
 	</script>
 </html>
