@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import cardframe from "../pages/components/cardframe.astro";
+import { TextShimmer } from "@/components/motion-primitives/text-shimmer";
 ---
 
 <html lang="en">
@@ -265,4 +266,14 @@ import cardframe from "../pages/components/cardframe.astro";
 		console.log("curated button clicked");
 	});
 	// #endregion
+	// #region
+	const nametext = document.querySelector(
+		".lander-name-container",
+	) as HTMLElement;
+	nametext.addEventListener("mouseenter", () => {
+		console.log("name text hovered");
+	});
+	nametext.addEventListener("mouseleave", () => {
+		console.log("name text left");
+	});
 </script>
