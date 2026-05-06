@@ -23,5 +23,5 @@ information distribution:
 
 - front page: name, linkedin, github(?), twitter, , email (copy, not mailto), hint, scrolling text, random subtitle every time?
 - projects: 11096, cad stuff, awards/recognition
-- basic info: current status and updates, interests, software i like and use
+- basic info: current status and updates, interests, software i like and use, employment, resume (email me)
 - cool stuff: photos, youtube videos, playlist, maybe other websites i like, blog posts when i'm not too lazy

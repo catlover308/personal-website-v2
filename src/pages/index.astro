@@ -18,72 +18,119 @@ import cardframe from "../pages/components/cardframe.astro";
 				<div class="lander-name-container">
 					<h1 class="tomorrow-semibold">Bryce Lee</h1>
 				</div>
-				<!-- <div class="lander-subtitle-container">
-					<h2 class="tomorrow-regular">
-						Aspiring Engineer in Santa Clarita, CA
-					</h2>
-				</div> -->
-			</div>
-			<!-- #region buttons -->
-			<!-- email -->
-			<button class="social-buttons" onclick="copyemail()">
-				<svg
-					width="48"
-					height="48"
-					viewBox="0 0 24 24"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M21 4V5H20V6H19V7H18V8H17V9H16V10H15V11H14V12H13V13H11V12H10V11H9V10H8V9H7V8H6V7H5V6H4V5H3V4H21Z"
-						fill="currentColor"></path>
-					<path
-						d="M23 5V19H22V20H2V19H1V5H3V6H4V7H5V8H6V9H7V10H8V11H9V12H10V13H11V14H13V13H14V12H15V11H16V10H17V9H18V8H19V7H20V6H21V5H23Z"
-						fill="currentColor"></path>
-				</svg>
-			</button>
-			<!-- github -->
-			<button class="social-buttons" onclick="copygithub()">
-				<svg> <img src="../assets/github.svg" alt="" /></svg>
-			</button>
-			<!-- twitter -->
-			<button class="social-buttons" onclick="copytwitter()">
-				<svg> <img src="../assets/twitter.svg" alt="" /></svg>
-			</button>
-			<!-- instagram -->
-			<button class="social-buttons" onclick="copyinstagram()">
-				<svg> <img src="../assets/instagram.svg" alt="" /></svg>
-			</button>
-			<!-- linkedin -->
-			<button class="social-buttons" onclick="copylinkedin()">
-				<svg> <img src="../assets/linkedin.svg" alt="" /></svg>
-			</button>
-			<!-- discord -->
-			<button class="social-buttons" onclick="copydiscord()">
-				<svg> <img src="../assets/discord.svg" alt="" /></svg>
-			</button>
-			<!-- #endregion -->
-			<!-- #region scrolling text -->
-			<svg class="scrolling-path">
-				<path
-					id="trace"
-					d=""
-					fill="none"
-					stroke="black"
-					stroke-width="2"
-				>
-				</path>
-				<scrolltext dy="-10">
-					<textpath
-						id="scrollingtext"
-						href="#trace"
-						text-anchor="middle"
+				<div class="social-buttons-container">
+					<!-- email -->
+					<button class="social-buttons" onclick="copyemail()">
+						<svg
+							width="48"
+							height="48"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M21 4V5H20V6H19V7H18V8H17V9H16V10H15V11H14V12H13V13H11V12H10V11H9V10H8V9H7V8H6V7H5V6H4V5H3V4H21Z"
+								fill="currentColor"></path>
+							<path
+								d="M23 5V19H22V20H2V19H1V5H3V6H4V7H5V8H6V9H7V10H8V11H9V12H10V13H11V14H13V13H14V12H15V11H16V10H17V9H18V8H19V7H20V6H21V5H23Z"
+								fill="currentColor"></path>
+						</svg>
+					</button>
+					<!-- github -->
+					<button
+						class="social-buttons"
+						onclick="window.open('https://github.com/catlover308', '_blank')"
 					>
-						ttesteiojdmsfijlkanmdjaskljdmsjlasmdkjsalm
-					</textpath>
-				</scrolltext>
-			</svg>
-			<!-- #endregion -->
+						<svg
+							width="48"
+							height="48"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M23 9V15H22V17H21V19H20V20H19V21H18V22H16V23H15V18H14V17H15V16H17V15H18V14H19V9H18V6H16V7H15V8H14V7H10V8H9V7H8V6H6V9H5V14H6V15H7V16H9V18H7V17H6V16H4V17H5V19H6V20H9V23H8V22H6V21H5V20H4V19H3V17H2V15H1V9H2V7H3V5H4V4H5V3H7V2H9V1H15V2H17V3H19V4H20V5H21V7H22V9H23Z"
+								fill="currentColor"
+							>
+							</path>
+						</svg>
+					</button>
+					<!-- twitter -->
+					<button
+						class="social-buttons"
+						onclick="window.open('https://twitter.com/brycel307', '_blank')"
+					>
+						<svg
+							width="48"
+							height="48"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d="M23 5H22V6H23V5Z" fill="currentColor"
+							></path>
+							<path d="M23 3H22V4H23V3Z" fill="currentColor"
+							></path>
+							<path
+								d="M21 5V6H22V7H21V12H20V14H19V16H18V17H17V18H16V19H14V20H11V21H4V20H2V19H1V18H3V19H6V18H7V17H5V16H4V15H3V14H5V13H3V12H2V10H4V9H3V8H2V4H3V5H4V6H5V7H7V8H10V9H12V5H13V4H14V3H19V4H22V5H21Z"
+								fill="currentColor"></path>
+						</svg>
+					</button>
+					<!-- instagram -->
+					<button
+						class="social-buttons"
+						onclick="window.open('https://instagram.com/brycel307', '_blank')"
+					>
+						<svg
+							width="48"
+							height="48"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M17 9V8H16V7H15V6H9V7H8V8H7V9H6V15H7V16H8V17H9V18H15V17H16V16H17V15H18V9H17ZM16 14H15V15H14V16H10V15H9V14H8V10H9V9H10V8H14V9H15V10H16V14Z"
+								fill="currentColor"></path>
+							<path
+								d="M22 5V3H21V2H19V1H5V2H3V3H2V5H1V19H2V21H3V22H5V23H19V22H21V21H22V19H23V5H22ZM21 19H20V20H19V21H5V20H4V19H3V5H4V4H5V3H19V4H20V5H21V19Z"
+								fill="currentColor"></path>
+							<path d="M19 5H17V7H19V5Z" fill="currentColor"
+							></path>
+						</svg>
+					</button>
+					<!-- linkedin -->
+					<button
+						class="social-buttons"
+						onclick="window.open('https://linkedin.com/in/brycel307', '_blank')"
+					>
+						<svg
+							width="48"
+							height="48"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M22 2V1H2V2H1V22H2V23H22V22H23V2H22ZM13 12V20H10V9H13V10H14V9H18V10H19V20H16V12H13ZM4 8V5H7V8H4ZM7 9V20H4V9H7Z"
+								fill="currentColor"></path>
+						</svg>
+					</button>
+					<!-- discord -->
+					<button class="social-buttons" onclick="copydiscord()">
+						<svg
+							width="48"
+							height="48"
+							viewBox="0 0 24 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M22 11V8H21V6H20V5H18V4H15V5H9V4H6V5H4V6H3V8H2V11H1V18H3V19H5V20H7V18H6V17H8V18H9V19H15V18H16V17H18V18H17V20H19V19H21V18H23V11H22ZM9 15H7V14H6V12H7V11H9V12H10V14H9V15ZM18 14H17V15H15V14H14V12H15V11H17V12H18V14Z"
+								fill="currentColor"></path>
+						</svg>
+					</button>
+				</div>
+			</div>
 		</div>
 		<cardframe>
 			<div class="project-card"></div>
@@ -91,14 +138,35 @@ import cardframe from "../pages/components/cardframe.astro";
 			<div class="curated-card"></div>
 		</cardframe>
 	</body>
-	<script>
-		// #region hand coded, creates dynamic SVG for scrolling text
-		const card = document.querySelector(".lander-card") as HTMLElement;
-		function refresh() {
-			const rect = card?.getBoundingClientRect();
-			const textoffset = 24;
-			const cardradius = 48;
-			const path = `M ${rect.x + cardradius},${rect.y + textoffset} 
+</html>
+
+<!-- #region scrolling text -->
+<svg class="scrolling-path">
+	<path id="trace" d="" fill="none" stroke="black" stroke-width="2"> </path>
+	<scrolltext dy="-10">
+		<textpath id="scrollingtext" href="#trace" text-anchor="middle">
+			ttesteiojdmsfijlkanmdjaskljdmsjlasmdkjsalm
+		</textpath>
+	</scrolltext>
+</svg>
+<!-- #endregion -->
+<script>
+	// #region copy buttons
+	function copyemail() {
+		navigator.clipboard.writeText("hi@brycel.net");
+	}
+	function copydiscord() {
+		navigator.clipboard.writeText("brycel307");
+	}
+	// #endregion
+	// #region create dynamic SVG for scrolling text
+	// hand coded
+	const card = document.querySelector(".lander-card") as HTMLElement;
+	function refresh() {
+		const rect = card?.getBoundingClientRect();
+		const textoffset = 24;
+		const cardradius = 48;
+		const path = `M ${rect.x + cardradius},${rect.y + textoffset} 
 			L${rect.right - cardradius} ${rect.y + textoffset} 
 			Q ${rect.right - textoffset} ${rect.y + textoffset} ${rect.right - textoffset} ${rect.y + cardradius} 
 			L ${rect.right - textoffset} ${rect.bottom - cardradius} 
@@ -107,28 +175,25 @@ import cardframe from "../pages/components/cardframe.astro";
 			Q ${rect.left + textoffset} ${rect.bottom - textoffset} ${rect.left + textoffset} ${rect.bottom - cardradius}
 			L ${rect.left + textoffset} ${rect.y + cardradius} 
 			Q ${rect.left + textoffset} ${rect.y + textoffset} ${rect.left + cardradius} ${rect.y + textoffset} Z`;
-			const svgpath = document.querySelector("#trace") as SVGPathElement;
-			svgpath.setAttribute("d", path);
-			svgpath.setAttribute("id", "trace");
-		}
-		// #endregion
-		// #region thanks claude
-		new ResizeObserver(refresh).observe(card);
-		refresh();
-		const scrollingtext = document.querySelector(
-			"#scrollingtext",
-		) as SVGTextPathElement;
-		let position = 0;
-		function animate() {
-			position += 0.1;
-			if (position > 100) position = 0;
-			scrollingtext.setAttribute(
-				"startOffset",
-				position.toString() + "%",
-			);
-			requestAnimationFrame(animate);
-		}
-		animate();
-		// #endregion
-	</script>
-</html>
+		const svgpath = document.querySelector("#trace") as SVGPathElement;
+		svgpath.setAttribute("d", path);
+		svgpath.setAttribute("id", "trace");
+	}
+	// #endregion
+	// #region animate scrolling text
+	// thanks claude
+	new ResizeObserver(refresh).observe(card);
+	refresh();
+	const scrollingtext = document.querySelector(
+		"#scrollingtext",
+	) as SVGTextPathElement;
+	let position = 0;
+	function animate() {
+		position += 0.1;
+		if (position > 100) position = 0;
+		scrollingtext.setAttribute("startOffset", position.toString() + "%");
+		requestAnimationFrame(animate);
+	}
+	animate();
+	// #endregion
+</script>
