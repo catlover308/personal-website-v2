@@ -18,12 +18,21 @@ body {
     /* Firefox */
     -ms-overflow-style: none;
     /* IE/Edge */
+    width: 100vw;
+    height: 100vh;
 }
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
     display: none;
     /* Chrome/Safari */
+}
+
+@media (min-width: 768px) {
+    .lander-card {
+        height: 72px;
+        width: 100px;
+    }
 }
 
 /* lander card */
@@ -57,11 +66,11 @@ body::-webkit-scrollbar {
             justify-content: flex-start;
             align-items: flex-start;
             gap: 12px;
-            height: 48px;
+            height: fit-content;
             left: 0px;
             bottom: 0px;
             margin-top: auto;
-            width: fit-content;
+            width: 100%;
         }
 
         .lander-name-container {
@@ -71,6 +80,9 @@ body::-webkit-scrollbar {
             box-sizing: border-box;
             border: 0px solid red;
             height: fit-content;
+            font-size: clamp(1rem, 48px, 6rem);
+            word-break: break-word;
+            margin-top: 0px;
         }
 
         .lander-subtitle-container {
@@ -90,6 +102,8 @@ body::-webkit-scrollbar {
             position: absolute;
             z-index: 100;
             pointer-events: none;
+            top: 0px;
+            left: 0px;
         }
     }
 }
@@ -104,6 +118,11 @@ body::-webkit-scrollbar {
 
 .social-buttons svg {
     color: black;
+}
+
+.social-buttons:hover svg{
+    color: white;
+    transition: color 0.3s ease;
 }
 .fish-card {
     height: 100%;
@@ -134,12 +153,17 @@ scrolltext {
 /* #region text */
 h1 {
     color: #00A0DF;
-    font-size: 6rem;
 }
 
 h2 {
     color: #0091B3;
     font-size: 3rem;
+}
+
+h1.lander-name {
+    font-size: clamp(1rem, 48px, 6rem);
+    word-break: break-word;
+    margin-top: 0px;
 }
 
 /* #endregion */
