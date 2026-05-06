@@ -22,7 +22,7 @@ import cardframe from "../pages/components/cardframe.astro";
 				</div>
 				<div class="social-buttons-container">
 					<!-- email -->
-					<button class="social-buttons" onclick="copyemail()">
+					<button id="email" class="social-buttons">
 						<svg
 							width="48"
 							height="48"
@@ -103,7 +103,7 @@ import cardframe from "../pages/components/cardframe.astro";
 					<!-- linkedin -->
 					<button
 						class="social-buttons"
-						onclick="window.open('https://linkedin.com/in/brycel307', '_blank')"
+						onclick="window.open('https://www.linkedin.com/in/bryce-lee-60b668373/', '_blank')"
 					>
 						<svg
 							width="48"
@@ -134,11 +134,13 @@ import cardframe from "../pages/components/cardframe.astro";
 				</div>
 			</div>
 		</div>
-		<cardframe>
-			<div class="project-card"></div>
-			<div class="info-card"></div>
-			<div class="curated-card"></div>
-		</cardframe>
+		<div class="cards-container">
+			<cardframe>
+				<div id="project-content" class="project-card hidden"></div>
+				<div id="info-content" class="info-card hidden"></div>
+				<div id="curated-content" class="curated-card hidden"></div>
+			</cardframe>
+		</div>
 	</body>
 </html>
 
@@ -154,11 +156,14 @@ import cardframe from "../pages/components/cardframe.astro";
 <!-- #endregion -->
 <script>
 	// #region copy buttons
-	function copyemail() {
+	const emailbutton = document.querySelector("#email") as HTMLElement;
+	emailbutton.addEventListener("click", () => {
 		navigator.clipboard.writeText("hi@brycel.net");
-	}
+		return true;
+	});
 	function copydiscord() {
 		navigator.clipboard.writeText("brycel307");
+		return true;
 	}
 	// #endregion
 	// #region create dynamic SVG for scrolling text
@@ -197,5 +202,24 @@ import cardframe from "../pages/components/cardframe.astro";
 		requestAnimationFrame(animate);
 	}
 	animate();
+	// #endregion
+	// #region clickable fish
+	const fishhitbox = document.querySelector("#email") as HTMLElement;
+	fishhitbox.addEventListener("click", () => {
+		console.log("fish clicked");
+		showcard(document.querySelector("#project-content") as HTMLElement);
+	});
+	const cards = document.querySelectorAll(
+		".project-content hidden, .info-content hidden, .curated-content hidden",
+	);
+	function showcard(selectedcard: HTMLElement) {
+		selectedcard.classList.remove("hidden");
+		selectedcard.classList.add("visible");
+	}
+	function hidecard(selectedcard: HTMLElement) {
+		selectedcard.classList.remove("visible");
+		selectedcard.classList.add("hidden");
+	}
+
 	// #endregion
 </script>
