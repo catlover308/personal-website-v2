@@ -34,3 +34,7 @@ features to add:
 - card swipeability
 - fish (clickable)
 - blog compatibility
+- spotify, hover action
+
+- dia shimmer
+- sound transit colors

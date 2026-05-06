@@ -15,6 +15,9 @@ import cardframe from "../pages/components/cardframe.astro";
 	<body>
 		<div class="lander-wrapper">
 			<div class="lander-card">
+				<button id="infobutton" class="test-buttons">card1</button>
+				<button id="projectbutton" class="test-buttons">card2</button>
+				<button id="curatedbutton" class="test-buttons">card3</button>
 				<div class="lander-name-container">
 					<lander-name class="tomorrow-semibold"
 						>Bryce Lee</lander-name
@@ -228,5 +231,26 @@ import cardframe from "../pages/components/cardframe.astro";
 		selectedcard.classList.add("hidden");
 	}
 
+	// #endregion
+	// #region testbutttons
+	const infocardclick = document.querySelector("#infobutton") as HTMLElement;
+	infocardclick.addEventListener("click", () => {
+		showcard(document.querySelector("#info-content") as HTMLElement);
+		console.log("info button clicked");
+	});
+	const projectcardclick = document.querySelector(
+		"#projectbutton",
+	) as HTMLElement;
+	projectcardclick.addEventListener("click", () => {
+		showcard(document.querySelector("#project-content") as HTMLElement);
+		console.log("project button clicked");
+	});
+	const curatedcardclick = document.querySelector(
+		"#curatedbutton",
+	) as HTMLElement;
+	curatedcardclick.addEventListener("click", () => {
+		showcard(document.querySelector("#curated-content") as HTMLElement);
+		console.log("curated button clicked");
+	});
 	// #endregion
 </script>

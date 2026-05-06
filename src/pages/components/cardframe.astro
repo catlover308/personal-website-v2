@@ -1,5 +1,17 @@
-<div class="card-title" aria-hidden="true">
-    <h1 class="tomorrow-semibold">About Me</h1>
+---
+const viewportHeight = document.documentElement.clientHeight;
+const viewportWidth = document.documentElement.clientWidth;
+
+if (viewportWidth < 768) {
+    const cardWidth = viewportWidth * 0.5;
+}
+console.log(viewportWidth, viewportHeight);
+---
+
+<div
+    class={`card-shell overflow-hidden relative rounded-4x1 backdrop-blur-2xl shadow-2xl w-{cardWidth} h-{viewportHeight - 96}`}
+    aria-hidden="true"
+>
     <h1 class="tomorrow-semibold">About Me</h1>
 </div>
 <slot> sjkdnask </slot>

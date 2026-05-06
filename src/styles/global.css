@@ -65,7 +65,7 @@ body::-webkit-scrollbar {
             flex-direction: row;
             justify-content: flex-start;
             align-items: flex-start;
-            gap: 12px;
+            gap: 18px;
             height: fit-content;
             left: 0px;
             bottom: 0px;
@@ -142,6 +142,17 @@ body::-webkit-scrollbar {
     }
 }
 
+.test-buttons{
+    position: absolute;
+    top: 250px;
+    left: 250px;
+    height:48px;
+    width: fit-content;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 scrolltext {
     font-family: "Tomorrow", sans-serif;
     font-weight: 400;
