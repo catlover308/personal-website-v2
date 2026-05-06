@@ -145,9 +145,11 @@ import cardframe from "../pages/components/cardframe.astro";
 		</div>
 		<div class="cards-container">
 			<cardframe>
-				<div id="project-content" class="project-card hidden"></div>
-				<div id="info-content" class="info-card hidden"></div>
-				<div id="curated-content" class="curated-card hidden"></div>
+				<div id="project-content" class="project-card hidden">
+					project
+				</div>
+				<div id="info-content" class="info-card hidden">what???</div>
+				<div id="curated-content" class="curated-card hidden">owls</div>
 			</cardframe>
 		</div>
 	</body>
@@ -223,12 +225,22 @@ import cardframe from "../pages/components/cardframe.astro";
 		".project-content hidden, .info-content hidden, .curated-content hidden",
 	);
 	function showcard(selectedcard: HTMLElement) {
+		cards.forEach((card) => {
+			card.classList.remove("visible");
+			card.classList.add("hidden");
+			console.log("cards-hidden");
+		});
 		selectedcard.classList.remove("hidden");
 		selectedcard.classList.add("visible");
+		console.log("card-attempt");
 	}
 	function hidecard(selectedcard: HTMLElement) {
-		selectedcard.classList.remove("visible");
-		selectedcard.classList.add("hidden");
+		cards.forEach((card) => {
+			card.classList.remove("visible");
+			card.classList.add("hidden");
+			console.log("cards-hidden");
+		});
+		console.log("card-attempt");
 	}
 
 	// #endregion
