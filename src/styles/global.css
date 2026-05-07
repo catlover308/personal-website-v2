@@ -45,6 +45,30 @@ body::-webkit-scrollbar {
     /* Chrome/Safari */
 }
 
+.button-card {
+    width: 180px;
+    height: 180px;
+    background-color: #0091B3;
+    border-radius: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #002E6D;
+}
+
+.button-cards-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    height: 50vh;
+    left: 0px;
+    bottom: 0px;
+    margin-top: auto;
+    width: 100%;
+    background-color: green;
+}
 /* #endregion
 
 /* lander card */
@@ -108,7 +132,7 @@ body::-webkit-scrollbar {
 .scrolling-path {
             width: 100vw;
             height: 100vh;
-            border: 1px solid black;
+            border: 0px solid black;
             box-sizing: border-box;
             padding: 12px;
             margin-bottom: 24px;

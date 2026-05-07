@@ -26,15 +26,13 @@ information distribution:
 - basic info: current status and updates, interests, software i like and use, employment, resume (email me)
 - cool stuff: photos, youtube videos, playlist, maybe other websites i like, blog posts when i'm not too lazy
 
-features to add:
+originally I was going to have you click the different colored fish as they swimn and that brings up cards with info on them that you can swipe away. but I ran out of time since it's my first programming project and i'm learning as I go. I also refactored and rescoped a few times...
 
-- cards
+planned features:
+
 - mobile compatibility
 - scrolling text
 - card swipeability
 - fish (clickable)
 - blog compatibility
-- spotify, hover action
-
-- dia shimmer
-- sound transit colors
+- text shimmer

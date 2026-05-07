@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import cardframe from "../pages/components/cardframe.astro";
+// import cardframe from "../pages/components/cardframe.astro";
 ---
 
 <html lang="en">
@@ -15,11 +15,11 @@ import cardframe from "../pages/components/cardframe.astro";
 	<body>
 		<div class="lander-wrapper">
 			<div class="lander-card">
-				<div class="test-buttons">
+				<!-- <div class="test-buttons">
 					<button id="infobutton">card1</button>
 					<button id="projectbutton">card2</button>
 					<button id="curatedbutton">card3</button>
-				</div>
+				</div> -->
 				<div class="lander-name-container">
 					<lander-name class="tomorrow-semibold"
 						>Bryce Lee</lander-name
@@ -27,9 +27,14 @@ import cardframe from "../pages/components/cardframe.astro";
 				</div>
 				<div
 					id="lander-subtitle"
-					class="font-['Space_Grotesk'] italic text-[36px] text-left text-[#F0F0F0] font-medium tracking-tight"
+					class="font-['Space_Grotesk'] italic text-[24px] text-left text-[#F0F0F0] font-medium tracking-tight w-full break-words"
 				>
-					oneliner placeholder that refreshes
+					Incoming Civil Engineering student in Santa Clarita, CA
+				</div>
+				<div class="button-cards-container">
+					<div class="button-card">About Me</div>
+					<div class="button-card">Projects</div>
+					<div class="button-card">Curations</div>
 				</div>
 				<div class="social-buttons-container">
 					<!-- email -->
@@ -145,7 +150,7 @@ import cardframe from "../pages/components/cardframe.astro";
 				</div>
 			</div>
 		</div>
-		<div class="cards-container">
+		<!-- <div class="cards-container">
 			<cardframe>
 				<div id="project-content" class="project-card hidden">
 					project
@@ -155,9 +160,9 @@ import cardframe from "../pages/components/cardframe.astro";
 					curated
 				</div>
 			</cardframe>
-		</div>
+		</div> -->
 		<svg class="scrolling-path">
-			<path id="trace" d="" fill="none" stroke="black" stroke-width="2">
+			<path id="trace" d="" fill="none" stroke="black" stroke-width="0">
 			</path>
 			<scrolltext dy="-10">
 				<textPath
@@ -173,8 +178,6 @@ import cardframe from "../pages/components/cardframe.astro";
 	</body>
 </html>
 
-<!-- #region scrolling text -->
-<!-- #endregion -->
 <script>
 	// #region copy buttons
 	const emailbutton = document.querySelector("#email") as HTMLElement;
@@ -188,6 +191,7 @@ import cardframe from "../pages/components/cardframe.astro";
 		return true;
 	});
 	// #endregion
+
 	// #region create dynamic SVG for scrolling text
 	// hand coded
 	const card = document.querySelector(".lander-card") as HTMLElement;
@@ -209,6 +213,7 @@ import cardframe from "../pages/components/cardframe.astro";
 		svgpath.setAttribute("id", "trace");
 	}
 	// #endregion
+
 	// #region animate scrolling text
 	// thanks claude
 	new ResizeObserver(refresh).observe(card);
@@ -225,6 +230,7 @@ import cardframe from "../pages/components/cardframe.astro";
 	}
 	animate();
 	// #endregion
+
 	// #region clickable fish
 	const fishhitbox = document.querySelector("#email") as HTMLElement;
 	fishhitbox.addEventListener("click", () => {
@@ -254,7 +260,8 @@ import cardframe from "../pages/components/cardframe.astro";
 	}
 
 	// #endregion
-	// #region testbutttons
+
+	// #region clickable text buttons
 	const infocardclick = document.querySelector("#infobutton") as HTMLElement;
 	infocardclick.addEventListener("click", () => {
 		showcard(document.querySelector("#info-content") as HTMLElement);
@@ -275,6 +282,7 @@ import cardframe from "../pages/components/cardframe.astro";
 		console.log("curated button clicked");
 	});
 	// #endregion
+
 	// #region text hover
 
 	const nametext = document.querySelector(
