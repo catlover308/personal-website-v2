@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import cardframe from "../pages/components/cardframe.astro";
-import { TextShimmer } from "@/components/motion-primitives/text-shimmer";
 ---
 
 <html lang="en">
@@ -16,9 +15,11 @@ import { TextShimmer } from "@/components/motion-primitives/text-shimmer";
 	<body>
 		<div class="lander-wrapper">
 			<div class="lander-card">
-				<button id="infobutton" class="test-buttons">card1</button>
-				<button id="projectbutton" class="test-buttons">card2</button>
-				<button id="curatedbutton" class="test-buttons">card3</button>
+				<div class="test-buttons">
+					<button id="infobutton">card1</button>
+					<button id="projectbutton">card2</button>
+					<button id="curatedbutton">card3</button>
+				</div>
 				<div class="lander-name-container">
 					<lander-name class="tomorrow-semibold"
 						>Bryce Lee</lander-name
@@ -28,7 +29,7 @@ import { TextShimmer } from "@/components/motion-primitives/text-shimmer";
 					id="lander-subtitle"
 					class="font-['Space_Grotesk'] italic text-[36px] text-left text-[#F0F0F0] font-medium tracking-tight"
 				>
-					placeholder for subtitle text to scroll
+					oneliner placeholder that refreshes
 				</div>
 				<div class="social-buttons-container">
 					<!-- email -->
@@ -167,6 +168,7 @@ import { TextShimmer } from "@/components/motion-primitives/text-shimmer";
 </svg>
 <!-- #endregion -->
 <script>
+	import gsap from "gsap";
 	// #region copy buttons
 	const emailbutton = document.querySelector("#email") as HTMLElement;
 	emailbutton.addEventListener("click", () => {
@@ -266,7 +268,8 @@ import { TextShimmer } from "@/components/motion-primitives/text-shimmer";
 		console.log("curated button clicked");
 	});
 	// #endregion
-	// #region
+	// #region text hover
+
 	const nametext = document.querySelector(
 		".lander-name-container",
 	) as HTMLElement;
@@ -276,4 +279,5 @@ import { TextShimmer } from "@/components/motion-primitives/text-shimmer";
 	nametext.addEventListener("mouseleave", () => {
 		console.log("name text left");
 	});
+	// #endregion
 </script>
