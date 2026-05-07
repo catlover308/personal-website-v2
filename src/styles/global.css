@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 :root {
     --water-color: #002E6D;
     --base-color: #f5f5f5;
@@ -39,13 +45,6 @@ body::-webkit-scrollbar {
     /* Chrome/Safari */
 }
 
-@media (min-width: 768px) {
-    .lander-card {
-        height: 72px;
-        width: 100px;
-    }
-}
-
 /* #endregion
 
 /* lander card */
@@ -56,10 +55,7 @@ body::-webkit-scrollbar {
     border: transparent;
     box-sizing: border-box;
     margin: 0px;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-top: 24px;
-    padding-bottom: 24px;   
+    padding: 24px;
 
     .lander-card {
         height: 100%;
@@ -69,7 +65,6 @@ body::-webkit-scrollbar {
         border-radius: 48px;
         background-color: var(--water-color);
         padding: 48px;
-        margin-bottom: 48px;
         display: flex;
         flex-direction: column;
         anchor-name: --card;
@@ -171,8 +166,6 @@ body::-webkit-scrollbar {
 
 .test-buttons{
     position: absolute;
-    top: 250px;
-    left: 250px;
     height:36px;
     width: 96px;
     display: flex;
@@ -180,6 +173,10 @@ body::-webkit-scrollbar {
     align-items: center;
     flex-direction: column;
     gap: 48px;
+    position-anchor: --card;
+    top: anchor(center);
+    left: anchor(center);
+    bottom: 168px;
 }
 
 .test-buttons button {
@@ -215,12 +212,13 @@ body::-webkit-scrollbar {
     width: 50vw;
     height: 100%;
     fill: red;
+
 }
 
 .project-card {
     border: 1px solid black;
     width: 50%;
-    height: 100vh;
+    height: fit-content;
     z-index: -1;
     fill: green;
     box-sizing: content-box;
@@ -244,18 +242,19 @@ body::-webkit-scrollbar {
     top: 0;
     left: 0;
     pointer-events: none;
+    fill: greenyellow;
 }
 
 .info-card {
     border: 1px solid black;
-    width: 100%;
-    height: 100%;
+    width: fit-content;
+    height: fit-content;
 }
 
 .curated-card {
     border: 1px solid black;
-    width: 100%;
-    height: 100%;
+    width: fit-content;
+    height: fit-content;
 }
 
 /* #region text */
@@ -410,4 +409,18 @@ h2 {
     font-optical-sizing: 100;
     font-weight: 300;
     font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .lander-card {
+        border-radius: 24px;
+        padding: 12px;
+    }
+    .social-buttons {
+        flex-direction: column;
+    }
+    .lander-wrapper {
+        padding: 12px;
+        border-radius: 24px;
+    }
 }

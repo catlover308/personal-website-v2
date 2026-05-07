@@ -150,8 +150,10 @@ import cardframe from "../pages/components/cardframe.astro";
 				<div id="project-content" class="project-card hidden">
 					project
 				</div>
-				<div id="info-content" class="info-card hidden">what???</div>
-				<div id="curated-content" class="curated-card hidden">owls</div>
+				<div id="info-content" class="info-card hidden">info</div>
+				<div id="curated-content" class="curated-card hidden">
+					curated
+				</div>
 			</cardframe>
 		</div>
 	</body>
@@ -168,7 +170,6 @@ import cardframe from "../pages/components/cardframe.astro";
 </svg>
 <!-- #endregion -->
 <script>
-	import gsap from "gsap";
 	// #region copy buttons
 	const emailbutton = document.querySelector("#email") as HTMLElement;
 	emailbutton.addEventListener("click", () => {
