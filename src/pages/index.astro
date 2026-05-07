@@ -156,18 +156,24 @@ import cardframe from "../pages/components/cardframe.astro";
 				</div>
 			</cardframe>
 		</div>
+		<svg class="scrolling-path">
+			<path id="trace" d="" fill="none" stroke="black" stroke-width="2">
+			</path>
+			<scrolltext dy="-10">
+				<textPath
+					id="scrollingtext"
+					href="#trace"
+					text-anchor="middle"
+					path="path"
+				>
+					ttesteiojdmsfijlkanmdjaskljdmsjlasmdkjsalm
+				</textPath>
+			</scrolltext>
+		</svg>
 	</body>
 </html>
 
 <!-- #region scrolling text -->
-<svg class="scrolling-path">
-	<path id="trace" d="" fill="none" stroke="black" stroke-width="2"> </path>
-	<scrolltext dy="-10">
-		<textpath id="scrollingtext" href="#trace" text-anchor="middle">
-			ttesteiojdmsfijlkanmdjaskljdmsjlasmdkjsalm
-		</textpath>
-	</scrolltext>
-</svg>
 <!-- #endregion -->
 <script>
 	// #region copy buttons
@@ -187,7 +193,7 @@ import cardframe from "../pages/components/cardframe.astro";
 	const card = document.querySelector(".lander-card") as HTMLElement;
 	function refresh() {
 		const rect = card?.getBoundingClientRect();
-		const textoffset = 24;
+		const textoffset = 12;
 		const cardradius = 48;
 		const path = `M ${rect.x + cardradius},${rect.y + textoffset} 
 			L${rect.right - cardradius} ${rect.y + textoffset} 
