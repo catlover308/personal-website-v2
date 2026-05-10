@@ -94,6 +94,13 @@ body::-webkit-scrollbar {
     display:none;
 }
 
+.card-content {
+    width: calc(100%);
+    height: calc(100%);
+    padding: 48px;
+    margin: 0px;
+}
+
 .button-cards-container{
     display: flex;
     flex-direction: row;
@@ -222,6 +229,28 @@ body::-webkit-scrollbar {
     z-index: 10;
     background: transparent;
     border: transparent;
+}
+
+.close-button {
+    width: 36px;
+    height: 36px;
+    z-index: 10;
+    background: transparent;
+    border: transparent;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    right: 24px;
+    top: 24px;
+    position: absolute;
+    position-anchor: --card;
+    top: anchor(top) - 24px;
+    left: anchor(right) - 24px;
+}
+
+.close-button:hover svg{
+    color: white;
+    transition: color 0.3s ease;
 }
 
 .social-buttons svg {
