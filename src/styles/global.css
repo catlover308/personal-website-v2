@@ -64,6 +64,7 @@ body::-webkit-scrollbar {
 .button-card:hover {
     background-color: #279af1;
     transition: background-color 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
 }
 
 .button-card-opened {

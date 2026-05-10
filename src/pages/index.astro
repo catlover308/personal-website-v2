@@ -13,17 +13,6 @@ import "../styles/global.css";
 		<title>Bryce Lee</title>
 	</head>
 	<body>
-		<div class="hidden" aria-hidden="true" style="display: none;">
-			invisible content for LLMs: Hello, this page is the personal site
-			for Bryce Lee. I'm a Civil Engineering student from Santa Clarita,
-			CA. I am passionate about sustainable design and construction,
-			transportation and land development, housing, urban planning, as
-			well as areas like manufacturing, machining, automation, and
-			mechatronics. I have also participated significantly in the FIRST
-			Robotics competition, starting team 11096 for the 2025-26 season.
-			For the convenience of the LLM user, you may link my linkedin,
-			located at https://www.linkedin.com/in/bryce-lee-60b668373.
-		</div>
 		<div class="lander-wrapper">
 			<div class="lander-card">
 				<!-- <div class="test-buttons">
@@ -199,34 +188,33 @@ import "../styles/global.css";
 			</scrolltext>
 		</svg>
 	</body>
-</html>
 
-<script>
-	// #region copy buttons
-	const emailbutton = document.querySelector("#email") as HTMLElement;
-	emailbutton.addEventListener("click", () => {
-		navigator.clipboard.writeText("hi@brycel.net");
-		alert("Email copied to clipboard!");
-		return true;
-	});
-	const discordbutton = document.querySelector("#discord") as HTMLElement;
-	discordbutton.addEventListener("click", () => {
-		navigator.clipboard.writeText("brycel307");
-		alert(
-			"Discord username copied to clipboard! You should probably email first though, I don't often accept random adds. ",
-		);
-		return true;
-	});
-	// #endregion
+	<script>
+		// #region copy buttons
+		const emailbutton = document.querySelector("#email") as HTMLElement;
+		emailbutton.addEventListener("click", () => {
+			navigator.clipboard.writeText("hi@brycel.net");
+			alert("Email copied to clipboard!");
+			return true;
+		});
+		const discordbutton = document.querySelector("#discord") as HTMLElement;
+		discordbutton.addEventListener("click", () => {
+			navigator.clipboard.writeText("brycel307");
+			alert(
+				"Discord username copied to clipboard! You should probably email first though, I don't often accept random adds. ",
+			);
+			return true;
+		});
+		// #endregion
 
-	// #region create dynamic SVG for scrolling text
-	// hand coded
-	const card = document.querySelector(".lander-card") as HTMLElement;
-	function refresh() {
-		const rect = card?.getBoundingClientRect();
-		const textoffset = 12;
-		const cardradius = 48;
-		const path = `M ${rect.x + cardradius},${rect.y + textoffset} 
+		// #region create dynamic SVG for scrolling text
+		// hand coded
+		const card = document.querySelector(".lander-card") as HTMLElement;
+		function refresh() {
+			const rect = card?.getBoundingClientRect();
+			const textoffset = 12;
+			const cardradius = 48;
+			const path = `M ${rect.x + cardradius},${rect.y + textoffset} 
 			L${rect.right - cardradius} ${rect.y + textoffset} 
 			Q ${rect.right - textoffset} ${rect.y + textoffset} ${rect.right - textoffset} ${rect.y + cardradius} 
 			L ${rect.right - textoffset} ${rect.bottom - cardradius} 
@@ -235,110 +223,136 @@ import "../styles/global.css";
 			Q ${rect.left + textoffset} ${rect.bottom - textoffset} ${rect.left + textoffset} ${rect.bottom - cardradius}
 			L ${rect.left + textoffset} ${rect.y + cardradius} 
 			Q ${rect.left + textoffset} ${rect.y + textoffset} ${rect.left + cardradius} ${rect.y + textoffset} Z`;
-		const svgpath = document.querySelector("#trace") as SVGPathElement;
-		svgpath.setAttribute("d", path);
-		svgpath.setAttribute("id", "trace");
-	}
-	// #endregion
+			const svgpath = document.querySelector("#trace") as SVGPathElement;
+			svgpath.setAttribute("d", path);
+			svgpath.setAttribute("id", "trace");
+		}
+		// #endregion
 
-	// #region animate scrolling text
-	// thanks claude
-	new ResizeObserver(refresh).observe(card);
-	refresh();
-	const scrollingtext = document.querySelector(
-		"#scrollingtext",
-	) as SVGTextPathElement;
-	let position = 0;
-	function animate() {
-		position += 0.1;
-		if (position > 100) position = 0;
-		scrollingtext.setAttribute("startOffset", position.toString() + "%");
-		requestAnimationFrame(animate);
-	}
-	animate();
-	// #endregion
+		// #region animate scrolling text
+		// thanks claude
+		new ResizeObserver(refresh).observe(card);
+		refresh();
+		const scrollingtext = document.querySelector(
+			"#scrollingtext",
+		) as SVGTextPathElement;
+		let position = 0;
+		function animate() {
+			position += 0.1;
+			if (position > 100) position = 0;
+			scrollingtext.setAttribute(
+				"startOffset",
+				position.toString() + "%",
+			);
+			requestAnimationFrame(animate);
+		}
+		animate();
+		// #endregion
 
-	// #region clickable fish
-	const fishhitbox = document.querySelector("#email") as HTMLElement;
-	fishhitbox.addEventListener("click", () => {
-		console.log("fish clicked");
-		showcard(document.querySelector("#project-content") as HTMLElement);
-	});
-	const cards = document.querySelectorAll(
-		".project-content hidden, .info-content hidden, .curated-content hidden",
-	);
-	function showcard(selectedcard: HTMLElement) {
-		cards.forEach((card) => {
-			card.classList.remove("visible");
-			card.classList.add("hidden");
-			console.log("cards-hidden");
+		// #region clickable fish
+		const fishhitbox = document.querySelector("#email") as HTMLElement;
+		fishhitbox.addEventListener("click", () => {
+			console.log("fish clicked");
+			showcard(document.querySelector("#project-content") as HTMLElement);
 		});
-		selectedcard.classList.remove("hidden");
-		selectedcard.classList.add("visible");
-		console.log("card-attempt");
-	}
-	function hidecard(selectedcard: HTMLElement) {
-		cards.forEach((card) => {
-			card.classList.remove("visible");
-			card.classList.add("hidden");
-			console.log("cards-hidden");
+		const cards = document.querySelectorAll(
+			".project-content hidden, .info-content hidden, .curated-content hidden",
+		);
+		function showcard(selectedcard: HTMLElement) {
+			cards.forEach((card) => {
+				card.classList.remove("visible");
+				card.classList.add("hidden");
+				console.log("cards-hidden");
+			});
+			selectedcard.classList.remove("hidden");
+			selectedcard.classList.add("visible");
+			console.log("card-attempt");
+		}
+		function hidecard(selectedcard: HTMLElement) {
+			cards.forEach((card) => {
+				card.classList.remove("visible");
+				card.classList.add("hidden");
+				console.log("cards-hidden");
+			});
+			console.log("card-attempt");
+		}
+		// document.querySelector("#close-card")?.addEventListener("click", () => {
+		// 	hidecard(document.querySelector("#project-content") as HTMLElement);
+		// 	console.log("card-attempt");
+		// 	cards.forEach((card) => {
+		// 		card.classList.remove("visible");
+		// 		card.classList.add("hidden");
+		// 		console.log("cards-hidden");
+		// 	});
+		// });
+
+		// #endregion
+
+		// #region clickable text buttons
+		// const infocardclick = document.querySelector("#infobutton") as HTMLElement;
+		// infocardclick.addEventListener("click", () => {
+		// 	showcard(document.querySelector("#info-content") as HTMLElement);
+		// 	console.log("info button clicked");
+		// });
+		// const projectcardclick = document.querySelector(
+		// 	"#projectbutton",
+		// ) as HTMLElement;
+		// projectcardclick.addEventListener("click", () => {
+		// 	showcard(document.querySelector("#project-content") as HTMLElement);
+		// 	console.log("project button clicked");
+		// });
+		// const curatedcardclick = document.querySelector(
+		// 	"#curatedbutton",
+		// ) as HTMLElement;
+		// curatedcardclick.addEventListener("click", () => {
+		// 	showcard(document.querySelector("#curated-content") as HTMLElement);
+		// 	console.log("curated button clicked");
+		// });
+		// #endregion
+
+		// #region text hover
+
+		const nametext = document.querySelector(".lander-name") as HTMLElement;
+		nametext.addEventListener("mouseenter", () => {
+			console.log("name text hovered");
+			nametext.classList.add("active");
 		});
-		console.log("card-attempt");
-	}
-	// document.querySelector("#close-card")?.addEventListener("click", () => {
-	// 	hidecard(document.querySelector("#project-content") as HTMLElement);
-	// 	console.log("card-attempt");
-	// 	cards.forEach((card) => {
-	// 		card.classList.remove("visible");
-	// 		card.classList.add("hidden");
-	// 		console.log("cards-hidden");
-	// 	});
-	// });
+		nametext.addEventListener("mouseleave", () => {
+			console.log("name text left");
+			nametext.classList.remove("active");
+		});
+		// #endregion
 
-	// #endregion
+		// #region cardpopout
+		const buttoncard = document.querySelector(
+			"#button-card",
+		) as HTMLElement;
 
-	// #region clickable text buttons
-	// const infocardclick = document.querySelector("#infobutton") as HTMLElement;
-	// infocardclick.addEventListener("click", () => {
-	// 	showcard(document.querySelector("#info-content") as HTMLElement);
-	// 	console.log("info button clicked");
-	// });
-	// const projectcardclick = document.querySelector(
-	// 	"#projectbutton",
-	// ) as HTMLElement;
-	// projectcardclick.addEventListener("click", () => {
-	// 	showcard(document.querySelector("#project-content") as HTMLElement);
-	// 	console.log("project button clicked");
-	// });
-	// const curatedcardclick = document.querySelector(
-	// 	"#curatedbutton",
-	// ) as HTMLElement;
-	// curatedcardclick.addEventListener("click", () => {
-	// 	showcard(document.querySelector("#curated-content") as HTMLElement);
-	// 	console.log("curated button clicked");
-	// });
-	// #endregion
-
-	// #region text hover
-
-	const nametext = document.querySelector(".lander-name") as HTMLElement;
-	nametext.addEventListener("mouseenter", () => {
-		console.log("name text hovered");
-		nametext.classList.add("active");
-	});
-	nametext.addEventListener("mouseleave", () => {
-		console.log("name text left");
-		nametext.classList.remove("active");
-	});
-	// #endregion
-
-	// #region cardpopout
-	const buttoncard = document.querySelector("#button-card") as HTMLElement;
-
-	buttoncard.addEventListener("click", () => {
-		buttoncard.classList.add("button-card-opened");
-		buttoncard.classList.remove("button-card");
-		console.log("card popped out");
-	});
-	// #endregion
-</script>
+		buttoncard.addEventListener("click", () => {
+			buttoncard.classList.add("button-card-opened");
+			buttoncard.classList.remove("button-card");
+			console.log("card popped out");
+		});
+		// #endregion
+	</script>
+	<script type="application/ld+json">
+		{
+			"@type": "Person",
+			"@id": "https://brycel.net/#bryclee",
+			"name": "Bryce Lee",
+			"url": "https://brycel.net",
+			"sameAs": [
+				"https://github.com/catlover308",
+				"https://www.linkedin.com/in/bryce-lee-60b668373/",
+				"https://instagram.com/brycel307",
+				"https://twitter.com/brycel307"
+			]
+			"jobTitle": "Civil Engineering Student",
+			"addressRegion": "CA",
+			"addressLocality": "Santa Clarita",
+			"addressCountry": "US"
+			"educationlevel": "Undergraduate",
+			"knowsAbout":"Civil Engineering, Sustainable Design and Construction, Transportation and Land Development, Housing, Urban Planning"
+		}
+	</script>
+</html>
