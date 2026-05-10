@@ -15,7 +15,9 @@ export default defineConfig({
   // or 'hybrid'
   output: 'server',
 
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    mode: 'directory'
+  }),
 
   vite: {
     plugins: [tailwindcss()]
