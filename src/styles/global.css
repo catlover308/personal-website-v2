@@ -46,28 +46,32 @@ body::-webkit-scrollbar {
 }
 
 .button-card {
-    width: 180px;
-    height: 180px;
-    background-color: #0091B3;
-    border-radius: 48px;
+    border-radius: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #002E6D;
+    background-color: #F0F0F0;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 48px;
+    width: calc((100% - 24px *2 ) / 3);
+    height: 100%;
 }
 
 .button-cards-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: stretch;
+    align-items: stretch;
     gap: 24px;
     height: 50vh;
     left: 0px;
     bottom: 0px;
     margin-top: auto;
     width: 100%;
-    background-color: green;
+    /* background-color: green; */
+    flex-wrap: wrap;
 }
 /* #endregion
 

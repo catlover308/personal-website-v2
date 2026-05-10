@@ -3,9 +3,11 @@
 ***Built for [HCTG](https://game.hackclub.com/)***, ***uses [astro](https://astro.build/) as a template***
 <!-- ***Also uses [lenis](https://github.com/studio-freight/lenis) for smooth scrolling*** -->
 
-This is my literally my first programming project, so it's relatively simple. I'm gonna redo it and make it more standard once I have more work to showcase
+This is my literally my first programming project, so it's relatively simple. I'm gonna add in the descoped features at some point and make it more standard once I have more work to showcase
 
-Hint: click the special fish
+## Project Timeline
+
+    
 
 Updated: 5/4/2026
 
