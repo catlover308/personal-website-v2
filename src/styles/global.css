@@ -54,7 +54,7 @@ body::-webkit-scrollbar {
     font-family: "Space Grotesk", sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 48px;
+    font-size: 30px;
     width: calc((100% - 24px *2 ) / 3);
     height: 100%;
     --bg-color: #087e8b;
@@ -67,33 +67,47 @@ body::-webkit-scrollbar {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
 }
 
-.button-card-opened {
+.card-opened {
     position: absolute;
     position-anchor: --card;
     top: 24px;
     left: 24px;
     width: calc(100vw - 48px);
     height: calc(100vh - 48px);
-    /* background-color: red; */
+    background-color: rgba(215, 78, 9, 0.25);
     backdrop-filter: blur(10px);
     border-radius: 48px;
     z-index: 1000;
+}
+
+.card-closed {
+    position: absolute;
+    position-anchor: --card;
+    top: 24px;
+    left: 24px;
+    width: calc(100vw - 48px);
+    height: calc(100vh - 48px);
+    border-radius: 48px;
+    z-index: 0;
     background-color: rgba();
+    pointer-events: none;
+    display:none;
 }
 
 .button-cards-container{
     display: flex;
     flex-direction: row;
     justify-content: stretch;
-    align-items: stretch;
+    align-items: center;
     gap: 24px;
-    height: 50vh;
+    height: 10vh;
     left: 0px;
     bottom: 0px;
-    margin-top: auto;
+    margin-bottom: 12px;
     width: 100%;
     /* background-color: green; */
     flex-wrap: wrap;
+    margin-top:auto;
 }
 /* #endregion
 
@@ -124,12 +138,12 @@ body::-webkit-scrollbar {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
-            align-items: flex-start;
+            align-items: flex-end;
             gap: 18px;
             height: fit-content;
             left: 0px;
             bottom: 0px;
-            margin-top: auto;
+            margin-top: 24px;
             width: 100%;
         }
 

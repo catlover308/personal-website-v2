@@ -7,8 +7,11 @@ This is my literally my first programming project, so it's relatively simple. I'
 
 ## Project Timeline
 
-    
+Original concept: Card based, single page scrolling website. Pretty standard. This got built like 75% until I realized it was really corporate and boring. 
 
+Second version: Single page locked scroll, like a dashboard. To reveal the actual information you would have to click on some different colored fish that would be swimming around the page. 
+
+Third, final version: 
 Updated: 5/4/2026
 
 ## AI Declaration

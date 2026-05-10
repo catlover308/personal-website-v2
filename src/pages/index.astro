@@ -1,6 +1,9 @@
 ---
 import "../styles/global.css";
 // import cardframe from "../pages/components/cardframe.astro";
+import infocontent from "../components/infocardcontent.md";
+import projectcontent from "../components/projectcardcontent.md";
+import curatedcontent from "../components/curatedcardcontent.md";
 ---
 
 <html lang="en">
@@ -11,6 +14,25 @@ import "../styles/global.css";
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Bryce Lee</title>
+		<script type="application/ld+json">
+			{
+				"@type": "Person",
+				"name": "Bryce Lee",
+				"url": "https://brycel.net",
+				"sameAs": [
+					"https://github.com/catlover308",
+					"https://www.linkedin.com/in/bryce-lee-60b668373/",
+					"https://instagram.com/brycel307",
+					"https://twitter.com/brycel307"
+				],
+				"jobTitle": "Civil Engineering Student",
+				"addressRegion": "CA",
+				"addressLocality": "Santa Clarita",
+				"addressCountry": "US",
+				"educationlevel": "Undergraduate",
+				"knowsAbout": "Civil Engineering, Sustainable Design and Construction, Transportation and Land Development, Housing, Urban Planning"
+			}
+		</script>
 	</head>
 	<body>
 		<div class="lander-wrapper">
@@ -30,23 +52,9 @@ import "../styles/global.css";
 					Civil Engineering student from Santa Clarita, CA
 				</div>
 				<div class="button-cards-container">
-					<div id="button-card" class="button-card">
-						About Me
-						<svg
-							width="20"
-							height="20"
-							viewBox="0 0 20 20"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-							id="close-card"
-						>
-							<path
-								d="M12 11H13V12H14V13H15V14H16V15H17V16H18V17H19V18H20V19H19V20H18V19H17V18H16V17H15V16H14V15H13V14H12V13H11V12H9V13H8V14H7V15H6V16H5V17H4V18H3V19H2V20H1V19H0V18H1V17H2V16H3V15H4V14H5V13H6V12H7V11H8V9H7V8H6V7H5V6H4V5H3V4H2V3H1V2H0V1H1V0H2V1H3V2H4V3H5V4H6V5H7V6H8V7H9V8H11V7H12V6H13V5H14V4H15V3H16V2H17V1H18V0H19V1H20V2H19V3H18V4H17V5H16V6H15V7H14V8H13V9H12V11Z"
-								fill="black"></path>
-						</svg>
-					</div>
-					<div id="button-card" class="button-card">Projects</div>
-					<div id="button-card" class="button-card">Curations</div>
+					<div id="infobutton" class="button-card">About Me</div>
+					<div id="projectbutton" class="button-card">Projects</div>
+					<div id="curatedbutton" class="button-card">Curations</div>
 				</div>
 				<div class="social-buttons-container">
 					<!-- email -->
@@ -160,9 +168,31 @@ import "../styles/global.css";
 						</svg>
 					</button>
 				</div>
+				<div id="info-inner" class="card-closed">
+					<infocontent></infocontent>
+					<div id="info-inner-close-button">
+						<svg
+							width="20"
+							height="20"
+							viewBox="0 0 20 20"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							id="close-card"
+						>
+							<path
+								d="M12 11H13V12H14V13H15V14H16V15H17V16H18V17H19V18H20V19H19V20H18V19H17V18H16V17H15V16H14V15H13V14H12V13H11V12H9V13H8V14H7V15H6V16H5V17H4V18H3V19H2V20H1V19H0V18H1V17H2V16H3V15H4V14H5V13H6V12H7V11H8V9H7V8H6V7H5V6H4V5H3V4H2V3H1V2H0V1H1V0H2V1H3V2H4V3H5V4H6V5H7V6H8V7H9V8H11V7H12V6H13V5H14V4H15V3H16V2H17V1H18V0H19V1H20V2H19V3H18V4H17V5H16V6H15V7H14V8H13V9H12V11Z"
+								fill="black"></path>
+						</svg>
+					</div>
+				</div>
+				<div id="projects-inner" class="card-closed">
+					<projectcontent></projectcontent>
+				</div>
+				<div id="curated-inner" class="card-closed">
+					<curatedcontent></curatedcontent>
+				</div>
 			</div>
-		</div>
-		<!-- <div class="cards-container">
+			<!-- <div class="cards-container">
 			<cardframe>
 				<div id="project-content" class="project-card hidden">
 					project
@@ -173,48 +203,56 @@ import "../styles/global.css";
 				</div>
 			</cardframe>
 		</div> -->
-		<svg class="scrolling-path">
-			<path id="trace" d="" fill="none" stroke="black" stroke-width="0">
-			</path>
-			<scrolltext dy="-10">
-				<textPath
-					id="scrollingtext"
-					href="#trace"
-					text-anchor="middle"
-					path="path"
+			<svg class="scrolling-path">
+				<path
+					id="trace"
+					d=""
+					fill="none"
+					stroke="black"
+					stroke-width="0"
 				>
-					ttesteiojdmsfijlkanmdjaskljdmsjlasmdkjsalm
-				</textPath>
-			</scrolltext>
-		</svg>
-	</body>
+				</path>
+				<scrolltext dy="-10">
+					<textPath
+						id="scrollingtext"
+						href="#trace"
+						text-anchor="middle"
+						path="path"
+					>
+						ttesteiojdmsfijlkanmdjaskljdmsjlasmdkjsalm
+					</textPath>
+				</scrolltext>
+			</svg>
+		</div>
 
-	<script>
-		// #region copy buttons
-		const emailbutton = document.querySelector("#email") as HTMLElement;
-		emailbutton.addEventListener("click", () => {
-			navigator.clipboard.writeText("hi@brycel.net");
-			alert("Email copied to clipboard!");
-			return true;
-		});
-		const discordbutton = document.querySelector("#discord") as HTMLElement;
-		discordbutton.addEventListener("click", () => {
-			navigator.clipboard.writeText("brycel307");
-			alert(
-				"Discord username copied to clipboard! You should probably email first though, I don't often accept random adds. ",
-			);
-			return true;
-		});
-		// #endregion
+		<script>
+			// #region copy buttons
+			const emailbutton = document.querySelector("#email") as HTMLElement;
+			emailbutton.addEventListener("click", () => {
+				navigator.clipboard.writeText("hi@brycel.net");
+				alert("Email copied to clipboard!");
+				return true;
+			});
+			const discordbutton = document.querySelector(
+				"#discord",
+			) as HTMLElement;
+			discordbutton.addEventListener("click", () => {
+				navigator.clipboard.writeText("brycel307");
+				alert(
+					"Discord username copied to clipboard! You should probably email first though, I don't often accept random adds. ",
+				);
+				return true;
+			});
+			// #endregion
 
-		// #region create dynamic SVG for scrolling text
-		// hand coded
-		const card = document.querySelector(".lander-card") as HTMLElement;
-		function refresh() {
-			const rect = card?.getBoundingClientRect();
-			const textoffset = 12;
-			const cardradius = 48;
-			const path = `M ${rect.x + cardradius},${rect.y + textoffset} 
+			// #region create dynamic SVG for scrolling text
+			// hand coded
+			const card = document.querySelector(".lander-card") as HTMLElement;
+			function refresh() {
+				const rect = card?.getBoundingClientRect();
+				const textoffset = 12;
+				const cardradius = 48;
+				const path = `M ${rect.x + cardradius},${rect.y + textoffset} 
 			L${rect.right - cardradius} ${rect.y + textoffset} 
 			Q ${rect.right - textoffset} ${rect.y + textoffset} ${rect.right - textoffset} ${rect.y + cardradius} 
 			L ${rect.right - textoffset} ${rect.bottom - cardradius} 
@@ -223,136 +261,159 @@ import "../styles/global.css";
 			Q ${rect.left + textoffset} ${rect.bottom - textoffset} ${rect.left + textoffset} ${rect.bottom - cardradius}
 			L ${rect.left + textoffset} ${rect.y + cardradius} 
 			Q ${rect.left + textoffset} ${rect.y + textoffset} ${rect.left + cardradius} ${rect.y + textoffset} Z`;
-			const svgpath = document.querySelector("#trace") as SVGPathElement;
-			svgpath.setAttribute("d", path);
-			svgpath.setAttribute("id", "trace");
-		}
-		// #endregion
+				const svgpath = document.querySelector(
+					"#trace",
+				) as SVGPathElement;
+				svgpath.setAttribute("d", path);
+				svgpath.setAttribute("id", "trace");
+			}
+			// #endregion
 
-		// #region animate scrolling text
-		// thanks claude
-		new ResizeObserver(refresh).observe(card);
-		refresh();
-		const scrollingtext = document.querySelector(
-			"#scrollingtext",
-		) as SVGTextPathElement;
-		let position = 0;
-		function animate() {
-			position += 0.1;
-			if (position > 100) position = 0;
-			scrollingtext.setAttribute(
-				"startOffset",
-				position.toString() + "%",
+			// // #region animate scrolling text
+			// // thanks claude
+			// new ResizeObserver(refresh).observe(card);
+			// refresh();
+			// const scrollingtext = document.querySelector(
+			// 	"#scrollingtext",
+			// ) as SVGTextPathElement;
+			// let position = 0;
+			// function animate() {
+			// 	position += 0.1;
+			// 	if (position > 100) position = 0;
+			// 	scrollingtext.setAttribute(
+			// 		"startOffset",
+			// 		position.toString() + "%",
+			// 	);
+			// 	requestAnimationFrame(animate);
+			// }
+			// animate();
+			// // #endregion
+
+			// #region clickable fish
+			const fishhitbox = document.querySelector("#email") as HTMLElement;
+			fishhitbox.addEventListener("click", () => {
+				console.log("fish clicked");
+				showcard(
+					document.querySelector("#project-content") as HTMLElement,
+				);
+			});
+			const cards = document.querySelectorAll(
+				".project-content hidden, .info-content hidden, .curated-content hidden",
 			);
-			requestAnimationFrame(animate);
-		}
-		animate();
-		// #endregion
+			function showcard(selectedcard: HTMLElement) {
+				cards.forEach((card) => {
+					card.classList.remove("visible");
+					card.classList.add("hidden");
+					console.log("cards-hidden");
+				});
+				selectedcard.classList.remove("hidden");
+				selectedcard.classList.add("visible");
+				console.log("card-attempt");
+			}
+			function hidecard(selectedcard: HTMLElement) {
+				cards.forEach((card) => {
+					card.classList.remove("visible");
+					card.classList.add("hidden");
+					console.log("cards-hidden");
+				});
+				console.log("card-attempt");
+			}
+			// document.querySelector("#close-card")?.addEventListener("click", () => {
+			// 	hidecard(document.querySelector("#project-content") as HTMLElement);
+			// 	console.log("card-attempt");
+			// 	cards.forEach((card) => {
+			// 		card.classList.remove("visible");
+			// 		card.classList.add("hidden");
+			// 		console.log("cards-hidden");
+			// 	});
+			// });
 
-		// #region clickable fish
-		const fishhitbox = document.querySelector("#email") as HTMLElement;
-		fishhitbox.addEventListener("click", () => {
-			console.log("fish clicked");
-			showcard(document.querySelector("#project-content") as HTMLElement);
-		});
-		const cards = document.querySelectorAll(
-			".project-content hidden, .info-content hidden, .curated-content hidden",
-		);
-		function showcard(selectedcard: HTMLElement) {
-			cards.forEach((card) => {
-				card.classList.remove("visible");
-				card.classList.add("hidden");
-				console.log("cards-hidden");
+			// #endregion
+
+			// #region clickable text buttons
+			// const infocardclick = document.querySelector("#infobutton") as HTMLElement;
+			// infocardclick.addEventListener("click", () => {
+			// 	showcard(document.querySelector("#info-content") as HTMLElement);
+			// 	console.log("info button clicked");
+			// });
+			// const projectcardclick = document.querySelector(
+			// 	"#projectbutton",
+			// ) as HTMLElement;
+			// projectcardclick.addEventListener("click", () => {
+			// 	showcard(document.querySelector("#project-content") as HTMLElement);
+			// 	console.log("project button clicked");
+			// });
+			// const curatedcardclick = document.querySelector(
+			// 	"#curatedbutton",
+			// ) as HTMLElement;
+			// curatedcardclick.addEventListener("click", () => {
+			// 	showcard(document.querySelector("#curated-content") as HTMLElement);
+			// 	console.log("curated button clicked");
+			// });
+			// #endregion
+
+			// #region text hover
+
+			const nametext = document.querySelector(
+				".lander-name",
+			) as HTMLElement;
+			nametext.addEventListener("mouseenter", () => {
+				console.log("name text hovered");
+				nametext.classList.add("active");
 			});
-			selectedcard.classList.remove("hidden");
-			selectedcard.classList.add("visible");
-			console.log("card-attempt");
-		}
-		function hidecard(selectedcard: HTMLElement) {
-			cards.forEach((card) => {
-				card.classList.remove("visible");
-				card.classList.add("hidden");
-				console.log("cards-hidden");
+			nametext.addEventListener("mouseleave", () => {
+				console.log("name text left");
+				nametext.classList.remove("active");
 			});
-			console.log("card-attempt");
-		}
-		// document.querySelector("#close-card")?.addEventListener("click", () => {
-		// 	hidecard(document.querySelector("#project-content") as HTMLElement);
-		// 	console.log("card-attempt");
-		// 	cards.forEach((card) => {
-		// 		card.classList.remove("visible");
-		// 		card.classList.add("hidden");
-		// 		console.log("cards-hidden");
-		// 	});
-		// });
+			// #endregion
 
-		// #endregion
+			// #region cardpopout
+			const infobutton = document.querySelector(
+				"#infobutton",
+			) as HTMLElement;
+			const projectbutton = document.querySelector(
+				"#projectbutton",
+			) as HTMLElement;
+			const curatedbutton = document.querySelector(
+				"#curatedbutton",
+			) as HTMLElement;
+			const infocontent2 = document.querySelector(
+				"#info-inner",
+			) as HTMLElement;
+			const projectcontent2 = document.querySelector(
+				"#projects-inner",
+			) as HTMLElement;
+			const curatedcontent2 = document.querySelector(
+				"#curated-inner",
+			) as HTMLElement;
 
-		// #region clickable text buttons
-		// const infocardclick = document.querySelector("#infobutton") as HTMLElement;
-		// infocardclick.addEventListener("click", () => {
-		// 	showcard(document.querySelector("#info-content") as HTMLElement);
-		// 	console.log("info button clicked");
-		// });
-		// const projectcardclick = document.querySelector(
-		// 	"#projectbutton",
-		// ) as HTMLElement;
-		// projectcardclick.addEventListener("click", () => {
-		// 	showcard(document.querySelector("#project-content") as HTMLElement);
-		// 	console.log("project button clicked");
-		// });
-		// const curatedcardclick = document.querySelector(
-		// 	"#curatedbutton",
-		// ) as HTMLElement;
-		// curatedcardclick.addEventListener("click", () => {
-		// 	showcard(document.querySelector("#curated-content") as HTMLElement);
-		// 	console.log("curated button clicked");
-		// });
-		// #endregion
+			infobutton.addEventListener("click", () => {
+				infocontent2.classList.add("card-opened");
+				infocontent2.classList.remove("card-closed");
+				console.log("card popped out");
+			});
 
-		// #region text hover
+			curatedbutton.addEventListener("click", () => {
+				curatedcontent2.classList.add("card-opened");
+				curatedcontent2.classList.remove("card-closed");
+				console.log("card popped out");
+			});
 
-		const nametext = document.querySelector(".lander-name") as HTMLElement;
-		nametext.addEventListener("mouseenter", () => {
-			console.log("name text hovered");
-			nametext.classList.add("active");
-		});
-		nametext.addEventListener("mouseleave", () => {
-			console.log("name text left");
-			nametext.classList.remove("active");
-		});
-		// #endregion
+			projectbutton.addEventListener("click", () => {
+				projectcontent2.classList.add("card-opened");
+				projectcontent2.classList.remove("card-closed");
+				console.log("card popped out");
+			});
 
-		// #region cardpopout
-		const buttoncard = document.querySelector(
-			"#button-card",
-		) as HTMLElement;
-
-		buttoncard.addEventListener("click", () => {
-			buttoncard.classList.add("button-card-opened");
-			buttoncard.classList.remove("button-card");
-			console.log("card popped out");
-		});
-		// #endregion
-	</script>
-	<script type="application/ld+json">
-		{
-			"@type": "Person",
-			"@id": "https://brycel.net/#bryclee",
-			"name": "Bryce Lee",
-			"url": "https://brycel.net",
-			"sameAs": [
-				"https://github.com/catlover308",
-				"https://www.linkedin.com/in/bryce-lee-60b668373/",
-				"https://instagram.com/brycel307",
-				"https://twitter.com/brycel307"
-			]
-			"jobTitle": "Civil Engineering Student",
-			"addressRegion": "CA",
-			"addressLocality": "Santa Clarita",
-			"addressCountry": "US"
-			"educationlevel": "Undergraduate",
-			"knowsAbout":"Civil Engineering, Sustainable Design and Construction, Transportation and Land Development, Housing, Urban Planning"
-		}
-	</script>
+			const infoinnerclosebutton = document.querySelector(
+				"#info-inner-close-button",
+			);
+			infoinnerclosebutton?.addEventListener("click", () => {
+				infocontent2.classList.add("card-closed");
+				infocontent2.classList.remove("card-opened");
+				console.log("card closed");
+			});
+			// #endregion
+		</script>
+	</body>
 </html>
