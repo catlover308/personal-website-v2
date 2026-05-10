@@ -57,6 +57,27 @@ body::-webkit-scrollbar {
     font-size: 48px;
     width: calc((100% - 24px *2 ) / 3);
     height: 100%;
+    --bg-color: #087e8b;
+    background-color: var(--bg-color);
+}
+
+.button-card:hover {
+    background-color: #279af1;
+    transition: background-color 0.3s ease;
+}
+
+.button-card-opened {
+    position: absolute;
+    position-anchor: --card;
+    top: 24px;
+    left: 24px;
+    width: calc(100vw - 48px);
+    height: calc(100vh - 48px);
+    /* background-color: red; */
+    backdrop-filter: blur(10px);
+    border-radius: 48px;
+    z-index: 1000;
+    background-color: rgba();
 }
 
 .button-cards-container{
@@ -130,6 +151,37 @@ body::-webkit-scrollbar {
             box-sizing: border-box;
             border: 0px solid green;
         }
+
+    }
+}
+
+.lander-name {
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(0deg, white, white);
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.lander-name.active {
+    animation: shimmer 0.6s linear;
+}
+
+@keyframes shimmer {
+    0% {
+        background: 
+            linear-gradient(90deg, transparent 0%, rgba(40,129,63,0.9) 50%, transparent 100%) -100% 0 / 50% 100% no-repeat,
+            linear-gradient(0deg, white, white) 0 0 / 100% 100% no-repeat;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+    100% {
+        background: 
+            linear-gradient(90deg, transparent 0%, rgba(40,129,63,0.9) 50%, transparent 100%) 200% 0 / 50% 100% no-repeat,
+            linear-gradient(0deg, white, white) 0 0 / 100% 100% no-repeat;
+        -webkit-background-clip: text;
+        background-clip: text;
     }
 }
 
