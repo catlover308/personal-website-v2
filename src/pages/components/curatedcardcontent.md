@@ -1,6 +1,10 @@
 # Some things I've made or find interesting
 
-## Software
+## Tech Stack
+
+<br>
+
+### Software
 
 I use [**Arc**](https://arc.net/) as well as [**Dia**](https://diabrowser.com/) for my main browsers. 
 
@@ -10,7 +14,7 @@ My main IDE at the moment is [**Antigravity**](https://antigravity.google). I'm 
 
 <br>
 
-## Hardware
+### Hardware
 
 Relatively low key at the moment. Main machine: macbook air m3 16gb. I built a pc ~8 years ago that i've upgraded a few times, but it's seen better days. 
 
@@ -23,6 +27,8 @@ I also use a pixel 7 pro as my phone and have a galaxy watch 6 classic for my sm
 3D printing has been an interest of mine for a few years now. I started in 2021 with a creality ender 3, and have since upgraded to a flashforge AD5M. i've mainly used it for practical purposes like household upgrades and printing FRC parts. I've experimented on it with more exotic and "unsupported" filaments like nylon, polycarbonate, and carbon fiber composites.
 
 <br>
+
+---
 
 ## Photography
 
