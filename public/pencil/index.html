@@ -10,12 +10,23 @@
   :root {
     color-scheme: dark;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --panel-bg: #151515;
+    --bg: #111;
+    --grid: #1d1d1d;
+    --border: #333;
+    --text: #eee;
+    --muted: #999;
+    --soft: #666;
   }
   * { box-sizing: border-box; }
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
   body {
     margin: 0;
-    background: #111;
-    color: #eee;
+    background: var(--bg);
+    color: var(--text);
     overflow: hidden;
     -webkit-user-select: none;
     user-select: none;
@@ -29,8 +40,8 @@
   #panel {
     padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
     overflow: auto;
-    border-right: 1px solid #333;
-    background: #151515;
+    border-right: 1px solid var(--border);
+    background: var(--panel-bg);
   }
   h1 {
     margin: 0 0 6px;
@@ -43,10 +54,11 @@
   }
   .status {
     padding: 10px 12px;
-    border: 1px solid #333;
+    border: 1px solid var(--border);
     border-radius: 10px;
     margin-bottom: 14px;
     font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif;
+    background: rgba(255,255,255,0.02);
   }
   .grid {
     display: grid;
@@ -55,7 +67,7 @@
     align-items: baseline;
     font-size: 13px;
   }
-  .label { color: #999; }
+  .label { color: var(--muted); }
   .value { color: #fff; text-align: right; font-variant-numeric: tabular-nums; }
   .section {
     margin: 16px 0 7px;
@@ -80,11 +92,14 @@
     min-height: 0;
     touch-action: none;
     background:
-      linear-gradient(#1d1d1d 1px, transparent 1px),
-      linear-gradient(90deg, #1d1d1d 1px, transparent 1px);
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
     background-size: 32px 32px;
+    overflow: hidden;
   }
   canvas {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     display: block;
@@ -96,19 +111,189 @@
     display: grid;
     place-items: center;
     pointer-events: none;
-    color: #666;
+    color: var(--soft);
     font: 16px -apple-system, BlinkMacSystemFont, sans-serif;
     text-align: center;
     padding: 24px;
   }
+  #puppetWrap {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: min(300px, calc(100% - 32px));
+    height: 240px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  #puppetTitle {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    z-index: 10;
+    color: #cfcfcf;
+    font: 11px/1.2 -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  #puppetScene {
+    position: absolute;
+    inset: 0;
+    perspective: 900px;
+    perspective-origin: 50% 42%;
+    overflow: hidden;
+  }
+  #devicePlane {
+    position: absolute;
+    left: 50%;
+    top: 62%;
+    width: 180px;
+    height: 120px;
+    transform-style: preserve-3d;
+    transform: translate3d(-50%, -50%, 0) rotateX(68deg);
+    border-radius: 14px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)),
+      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+      #1a1a1a;
+    background-size: auto, 24px 24px, 24px 24px, auto;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  #devicePlane::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.04);
+    transform: translateZ(-2px);
+  }
+  #pencilRig {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+  }
+  #pencilRig.hidden { opacity: 0.35; }
+  #pencilModel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+  }
+  .piece {
+    position: absolute;
+    transform-style: preserve-3d;
+  }
+  .shaft {
+    width: 12px;
+    height: 122px;
+    left: -6px;
+    top: -108px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #dadada 0%, #f6f6f6 22%, #ffffff 50%, #ececec 78%, #d3d3d3 100%);
+    box-shadow: inset 1px 0 0 rgba(255,255,255,0.7), inset -1px 0 0 rgba(0,0,0,0.12);
+    transform: translateZ(8px);
+  }
+  .cap {
+    width: 13px;
+    height: 22px;
+    left: -6.5px;
+    top: -126px;
+    border-radius: 9px 9px 6px 6px;
+    background: linear-gradient(90deg, #d6d6d6, #fafafa, #d8d8d8);
+    transform: translateZ(8px);
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06);
+  }
+  .band {
+    width: 14px;
+    height: 10px;
+    left: -7px;
+    top: -20px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #c9c9c9, #f0f0f0, #c9c9c9);
+    transform: translateZ(8px);
+  }
+  .tip {
+    width: 10px;
+    height: 26px;
+    left: -5px;
+    top: 2px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #d9d9d9, #f7f7f7, #d0d0d0);
+    transform: translateZ(8px);
+    transform-origin: 50% 0%;
+  }
+  .nib {
+    width: 5px;
+    height: 12px;
+    left: -2.5px;
+    top: 24px;
+    border-radius: 3px 3px 5px 5px;
+    background: linear-gradient(90deg, #d2d2d2, #fbfbfb, #c5c5c5);
+    transform: translateZ(8px);
+    transform-origin: 50% 0%;
+  }
+  #tipDot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    margin-top: -4px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.06), 0 0 28px rgba(255,255,255,0.18);
+    transform: translateZ(1px);
+  }
+  #shadow {
+    position: absolute;
+    left: 50%;
+    top: 62%;
+    width: 40px;
+    height: 18px;
+    margin-left: -20px;
+    margin-top: -9px;
+    border-radius: 999px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.42), rgba(0,0,0,0));
+    filter: blur(6px);
+    transform: translateZ(0);
+    pointer-events: none;
+  }
+  #puppetReadout {
+    position: absolute;
+    left: 12px;
+    bottom: 10px;
+    right: 12px;
+    z-index: 10;
+    color: #ddd;
+    font: 11px/1.35 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.45);
+  }
   @media (max-width: 760px) {
     #app {
       grid-template-columns: 1fr;
-      grid-template-rows: minmax(270px, 42vh) 1fr;
+      grid-template-rows: minmax(290px, 44vh) 1fr;
     }
     #panel {
       border-right: 0;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid var(--border);
+    }
+    #puppetWrap {
+      width: min(260px, calc(100% - 20px));
+      height: 210px;
+      top: 10px;
+      right: 10px;
     }
   }
 </style>
@@ -117,7 +302,7 @@
 <div id="app">
   <section id="panel">
     <h1>Apple Pencil Data Monitor</h1>
-    <p class="sub">Draw in the area to the right/below. Finger and mouse events are shown too so you can compare them.</p>
+    <p class="sub">Draw in the area to the right or below. A simulated 3D Pencil puppet tracks the event stream in the overlay.</p>
 
     <div class="status" id="status">Waiting for input…</div>
 
@@ -165,6 +350,26 @@
 
   <section id="stage">
     <canvas id="canvas"></canvas>
+
+    <div id="puppetWrap" aria-hidden="true">
+      <div id="puppetTitle">3D Pencil Puppet</div>
+      <div id="puppetScene">
+        <div id="shadow"></div>
+        <div id="devicePlane"></div>
+        <div id="pencilRig" class="hidden">
+          <div id="pencilModel">
+            <div class="piece cap"></div>
+            <div class="piece shaft"></div>
+            <div class="piece band"></div>
+            <div class="piece tip" id="tip"></div>
+            <div class="piece nib" id="nib"></div>
+          </div>
+        </div>
+        <div id="tipDot"></div>
+      </div>
+      <div id="puppetReadout">Awaiting pen input</div>
+    </div>
+
     <div id="hint">Touch or draw here with Apple Pencil</div>
   </section>
 </div>
@@ -176,6 +381,15 @@
   const ctx = canvas.getContext('2d', { alpha: true });
   const hint = document.getElementById('hint');
   const status = document.getElementById('status');
+  const puppetWrap = document.getElementById('puppetWrap');
+  const puppetScene = document.getElementById('puppetScene');
+  const pencilRig = document.getElementById('pencilRig');
+  const pencilModel = document.getElementById('pencilModel');
+  const shadow = document.getElementById('shadow');
+  const tip = document.getElementById('tip');
+  const nib = document.getElementById('nib');
+  const tipDot = document.getElementById('tipDot');
+  const puppetReadout = document.getElementById('puppetReadout');
 
   const ids = [
     'pointerType','pointerId','isPrimary','buttons',
@@ -209,9 +423,84 @@
     return String(v);
   }
 
+  function clamp(v, lo, hi) {
+    return Math.max(lo, Math.min(hi, v));
+  }
+
   function relativePoint(e) {
     const r = canvas.getBoundingClientRect();
     return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+
+  function degrees(rad) {
+    return rad * 180 / Math.PI;
+  }
+
+  function puppetPose(e, p) {
+    const penInput = e.pointerType === 'pen';
+    pencilRig.classList.toggle('hidden', !penInput);
+
+    const sceneRect = puppetScene.getBoundingClientRect();
+    const stageRect = canvas.getBoundingClientRect();
+    const nx = stageRect.width ? clamp(p.x / stageRect.width, 0, 1) : 0.5;
+    const ny = stageRect.height ? clamp(p.y / stageRect.height, 0, 1) : 0.5;
+
+    const rigX = 32 + nx * (sceneRect.width - 64);
+    const rigY = 32 + ny * (sceneRect.height - 88);
+
+    let rx = 0;
+    let ry = 0;
+    let rz = 0;
+    let altitudeDeg = null;
+    let azimuthDeg = null;
+
+    if (typeof e.altitudeAngle === 'number' && typeof e.azimuthAngle === 'number' && !Number.isNaN(e.altitudeAngle) && !Number.isNaN(e.azimuthAngle)) {
+      altitudeDeg = degrees(e.altitudeAngle);
+      azimuthDeg = degrees(e.azimuthAngle);
+      const tiltFromVertical = clamp(90 - altitudeDeg, 0, 85);
+      rx = tiltFromVertical * Math.sin(e.azimuthAngle);
+      ry = -tiltFromVertical * Math.cos(e.azimuthAngle);
+    } else {
+      rx = clamp((e.tiltY || 0) * 0.9, -65, 65);
+      ry = clamp(-(e.tiltX || 0) * 0.9, -65, 65);
+      altitudeDeg = typeof e.tiltX === 'number' || typeof e.tiltY === 'number'
+        ? 90 - Math.min(89, Math.hypot(e.tiltX || 0, e.tiltY || 0) * 0.8)
+        : null;
+    }
+
+    if (typeof e.twist === 'number' && !Number.isNaN(e.twist)) {
+      rz = e.twist;
+    } else if (typeof azimuthDeg === 'number') {
+      rz = azimuthDeg;
+    }
+
+    const pressure = clamp(typeof e.pressure === 'number' ? e.pressure : 0, 0, 1);
+    const hoverLift = e.buttons === 0 ? 18 : 0;
+    const pressDrop = pressure * 14;
+    const z = 26 + hoverLift - pressDrop;
+
+    pencilRig.style.transform = `translate3d(${rigX}px, ${rigY}px, ${z}px)`;
+    pencilModel.style.transform = `translate3d(0,0,0) rotateZ(${rz.toFixed(2)}deg) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+
+    const squash = 1 - pressure * 0.14;
+    const tipPush = pressure * 4;
+    tip.style.transform = `translateZ(8px) scaleY(${squash.toFixed(3)})`;
+    nib.style.transform = `translateZ(8px) translateY(${tipPush.toFixed(2)}px) scaleY(${(1 - pressure * 0.2).toFixed(3)})`;
+
+    const shadowScale = 0.8 + pressure * 1.6 + (penInput ? 0.15 : 0);
+    const shadowOpacity = 0.16 + pressure * 0.24 + (e.buttons === 0 ? 0.02 : 0.08);
+    const shadowX = (nx - 0.5) * 34;
+    const shadowY = (ny - 0.5) * 22;
+    shadow.style.transform = `translate3d(${shadowX.toFixed(2)}px, ${shadowY.toFixed(2)}px, 0) scale(${shadowScale.toFixed(3)})`;
+    shadow.style.opacity = shadowOpacity.toFixed(3);
+
+    tipDot.style.left = `${rigX}px`;
+    tipDot.style.top = `${rigY}px`;
+    tipDot.style.opacity = penInput ? '1' : '0.4';
+
+    const aText = altitudeDeg == null ? '—' : altitudeDeg.toFixed(1) + '°';
+    const zText = azimuthDeg == null ? '—' : azimuthDeg.toFixed(1) + '°';
+    puppetReadout.textContent = `alt ${aText} · azi ${zText} · rx ${rx.toFixed(1)}° · ry ${ry.toFixed(1)}° · roll ${rz.toFixed(1)}° · p ${pressure.toFixed(3)}`;
   }
 
   function update(e) {
@@ -225,9 +514,7 @@
     }
     lastT = e.timeStamp;
 
-    const coalesced = typeof e.getCoalescedEvents === 'function'
-      ? e.getCoalescedEvents()
-      : [];
+    const coalesced = typeof e.getCoalescedEvents === 'function' ? e.getCoalescedEvents() : [];
 
     out.pointerType.textContent = fmt(e.pointerType);
     out.pointerId.textContent = fmt(e.pointerId);
@@ -258,8 +545,10 @@
 
     const pencilish = e.pointerType === 'pen';
     status.textContent = pencilish
-      ? 'Pen input detected. Values below are what Safari exposes.'
+      ? 'Pen input detected. Values below are what Safari exposes. The puppet is an inferred geometric model, not Apple’s internal pose.'
       : `Input detected as "${e.pointerType || 'unknown'}". Use Apple Pencil for pen data.`;
+
+    puppetPose(e, p);
 
     if (drawing && e.buttons !== 0) {
       const samples = coalesced.length ? coalesced : [e];
