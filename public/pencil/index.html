@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#111111">
+<title>Apple Pencil Data Monitor</title>
+<style>
+  :root {
+    color-scheme: dark;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #111;
+    color: #eee;
+    overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #app {
+    display: grid;
+    grid-template-columns: minmax(300px, 38vw) 1fr;
+    width: 100vw;
+    height: 100vh;
+  }
+  #panel {
+    padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+    overflow: auto;
+    border-right: 1px solid #333;
+    background: #151515;
+  }
+  h1 {
+    margin: 0 0 6px;
+    font: 700 18px/1.25 -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .sub {
+    margin: 0 0 16px;
+    color: #aaa;
+    font: 12px/1.4 -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .status {
+    padding: 10px 12px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px 14px;
+    align-items: baseline;
+    font-size: 13px;
+  }
+  .label { color: #999; }
+  .value { color: #fff; text-align: right; font-variant-numeric: tabular-nums; }
+  .section {
+    margin: 16px 0 7px;
+    color: #bbb;
+    font: 600 11px/1.2 -apple-system, BlinkMacSystemFont, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+  button {
+    margin-top: 16px;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #444;
+    border-radius: 10px;
+    background: #222;
+    color: #eee;
+    font: 14px -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  #stage {
+    position: relative;
+    min-width: 0;
+    min-height: 0;
+    touch-action: none;
+    background:
+      linear-gradient(#1d1d1d 1px, transparent 1px),
+      linear-gradient(90deg, #1d1d1d 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+  }
+  #hint {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    color: #666;
+    font: 16px -apple-system, BlinkMacSystemFont, sans-serif;
+    text-align: center;
+    padding: 24px;
+  }
+  @media (max-width: 760px) {
+    #app {
+      grid-template-columns: 1fr;
+      grid-template-rows: minmax(270px, 42vh) 1fr;
+    }
+    #panel {
+      border-right: 0;
+      border-bottom: 1px solid #333;
+    }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <section id="panel">
+    <h1>Apple Pencil Data Monitor</h1>
+    <p class="sub">Draw in the area to the right/below. Finger and mouse events are shown too so you can compare them.</p>
+
+    <div class="status" id="status">Waiting for input…</div>
+
+    <div class="section">Identity</div>
+    <div class="grid">
+      <div class="label">pointerType</div><div class="value" id="pointerType">—</div>
+      <div class="label">pointerId</div><div class="value" id="pointerId">—</div>
+      <div class="label">isPrimary</div><div class="value" id="isPrimary">—</div>
+      <div class="label">buttons</div><div class="value" id="buttons">—</div>
+    </div>
+
+    <div class="section">Position</div>
+    <div class="grid">
+      <div class="label">x</div><div class="value" id="x">—</div>
+      <div class="label">y</div><div class="value" id="y">—</div>
+      <div class="label">clientX</div><div class="value" id="clientX">—</div>
+      <div class="label">clientY</div><div class="value" id="clientY">—</div>
+      <div class="label">movementX</div><div class="value" id="movementX">—</div>
+      <div class="label">movementY</div><div class="value" id="movementY">—</div>
+    </div>
+
+    <div class="section">Pencil / Pointer Sensors</div>
+    <div class="grid">
+      <div class="label">pressure</div><div class="value" id="pressure">—</div>
+      <div class="label">tangentialPressure</div><div class="value" id="tangentialPressure">—</div>
+      <div class="label">tiltX</div><div class="value" id="tiltX">—</div>
+      <div class="label">tiltY</div><div class="value" id="tiltY">—</div>
+      <div class="label">altitudeAngle</div><div class="value" id="altitudeAngle">—</div>
+      <div class="label">azimuthAngle</div><div class="value" id="azimuthAngle">—</div>
+      <div class="label">twist</div><div class="value" id="twist">—</div>
+      <div class="label">width</div><div class="value" id="width">—</div>
+      <div class="label">height</div><div class="value" id="height">—</div>
+    </div>
+
+    <div class="section">Timing</div>
+    <div class="grid">
+      <div class="label">event type</div><div class="value" id="eventType">—</div>
+      <div class="label">timestamp</div><div class="value" id="timestamp">—</div>
+      <div class="label">estimated rate</div><div class="value" id="rate">—</div>
+      <div class="label">coalesced samples</div><div class="value" id="coalesced">—</div>
+    </div>
+
+    <button id="clear">Clear trail</button>
+  </section>
+
+  <section id="stage">
+    <canvas id="canvas"></canvas>
+    <div id="hint">Touch or draw here with Apple Pencil</div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const stage = document.getElementById('stage');
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d', { alpha: true });
+  const hint = document.getElementById('hint');
+  const status = document.getElementById('status');
+
+  const ids = [
+    'pointerType','pointerId','isPrimary','buttons',
+    'x','y','clientX','clientY','movementX','movementY',
+    'pressure','tangentialPressure','tiltX','tiltY',
+    'altitudeAngle','azimuthAngle','twist','width','height',
+    'eventType','timestamp','rate','coalesced'
+  ];
+  const out = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
+
+  let lastT = null;
+  let rateEMA = null;
+  let lastPos = null;
+  let drawing = false;
+
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    const r = stage.getBoundingClientRect();
+    canvas.width = Math.max(1, Math.round(r.width * dpr));
+    canvas.height = Math.max(1, Math.round(r.height * dpr));
+    canvas.style.width = r.width + 'px';
+    canvas.style.height = r.height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+  }
+
+  function fmt(v, digits = 4) {
+    if (v === undefined || v === null || Number.isNaN(v)) return 'unsupported';
+    if (typeof v === 'number') return Number.isInteger(v) ? String(v) : v.toFixed(digits);
+    return String(v);
+  }
+
+  function relativePoint(e) {
+    const r = canvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+
+  function update(e) {
+    hint.style.display = 'none';
+
+    const p = relativePoint(e);
+    const dt = lastT == null ? null : e.timeStamp - lastT;
+    if (dt && dt > 0) {
+      const hz = 1000 / dt;
+      rateEMA = rateEMA == null ? hz : (rateEMA * 0.85 + hz * 0.15);
+    }
+    lastT = e.timeStamp;
+
+    const coalesced = typeof e.getCoalescedEvents === 'function'
+      ? e.getCoalescedEvents()
+      : [];
+
+    out.pointerType.textContent = fmt(e.pointerType);
+    out.pointerId.textContent = fmt(e.pointerId);
+    out.isPrimary.textContent = fmt(e.isPrimary);
+    out.buttons.textContent = fmt(e.buttons);
+
+    out.x.textContent = fmt(p.x, 2);
+    out.y.textContent = fmt(p.y, 2);
+    out.clientX.textContent = fmt(e.clientX, 2);
+    out.clientY.textContent = fmt(e.clientY, 2);
+    out.movementX.textContent = fmt(e.movementX, 2);
+    out.movementY.textContent = fmt(e.movementY, 2);
+
+    out.pressure.textContent = fmt(e.pressure, 5);
+    out.tangentialPressure.textContent = fmt(e.tangentialPressure, 5);
+    out.tiltX.textContent = fmt(e.tiltX, 2) + (e.tiltX != null ? '°' : '');
+    out.tiltY.textContent = fmt(e.tiltY, 2) + (e.tiltY != null ? '°' : '');
+    out.altitudeAngle.textContent = fmt(e.altitudeAngle, 5) + (e.altitudeAngle != null ? ' rad' : '');
+    out.azimuthAngle.textContent = fmt(e.azimuthAngle, 5) + (e.azimuthAngle != null ? ' rad' : '');
+    out.twist.textContent = fmt(e.twist, 2) + (e.twist != null ? '°' : '');
+    out.width.textContent = fmt(e.width, 3);
+    out.height.textContent = fmt(e.height, 3);
+
+    out.eventType.textContent = e.type;
+    out.timestamp.textContent = fmt(e.timeStamp, 3) + ' ms';
+    out.rate.textContent = rateEMA == null ? '—' : rateEMA.toFixed(1) + ' Hz';
+    out.coalesced.textContent = String(coalesced.length);
+
+    const pencilish = e.pointerType === 'pen';
+    status.textContent = pencilish
+      ? 'Pen input detected. Values below are what Safari exposes.'
+      : `Input detected as "${e.pointerType || 'unknown'}". Use Apple Pencil for pen data.`;
+
+    if (drawing && e.buttons !== 0) {
+      const samples = coalesced.length ? coalesced : [e];
+      for (const s of samples) {
+        const q = relativePoint(s);
+        if (lastPos) {
+          ctx.beginPath();
+          ctx.moveTo(lastPos.x, lastPos.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.lineWidth = 1.5 + (s.pressure || 0) * 7;
+          ctx.strokeStyle = '#f3f3f3';
+          ctx.stroke();
+        }
+        lastPos = q;
+      }
+    }
+  }
+
+  function down(e) {
+    drawing = true;
+    lastPos = relativePoint(e);
+    try { canvas.setPointerCapture(e.pointerId); } catch {}
+    update(e);
+  }
+
+  function up(e) {
+    update(e);
+    drawing = false;
+    lastPos = null;
+    try { canvas.releasePointerCapture(e.pointerId); } catch {}
+  }
+
+  canvas.addEventListener('pointerdown', down, { passive: false });
+  canvas.addEventListener('pointermove', update, { passive: false });
+  canvas.addEventListener('pointerup', up, { passive: false });
+  canvas.addEventListener('pointercancel', up, { passive: false });
+  canvas.addEventListener('pointerenter', update, { passive: true });
+  canvas.addEventListener('pointerrawupdate', update, { passive: true });
+
+  document.getElementById('clear').addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  const test = window.PointerEvent ? PointerEvent.prototype : {};
+  const supported = [
+    'pressure','tiltX','tiltY','twist','tangentialPressure',
+    'altitudeAngle','azimuthAngle'
+  ].filter(k => k in test);
+  console.log('PointerEvent properties exposed by this browser:', supported);
+})();
+</script>
+</body>
+</html>
