@@ -1,5 +1,124 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="theme-color" content="#111"><title>Apple Pencil Data Monitor</title><style>
-*{box-sizing:border-box}html,body{width:100%;height:100%}body{margin:0;background:#111;color:#eee;overflow:hidden;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;user-select:none;-webkit-user-select:none}#app{display:grid;grid-template-columns:minmax(300px,38vw) 1fr;width:100vw;height:100vh}#panel{padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));overflow:auto;border-right:1px solid #333;background:#151515}h1{margin:0 0 6px;font:700 18px/1.25 -apple-system,BlinkMacSystemFont,sans-serif}.sub{margin:0 0 16px;color:#aaa;font:12px/1.4 -apple-system,BlinkMacSystemFont,sans-serif}.status{padding:10px 12px;border:1px solid #333;border-radius:10px;margin-bottom:14px;font:13px/1.4 -apple-system,BlinkMacSystemFont,sans-serif}.section{margin:16px 0 7px;color:#bbb;font:600 11px/1.2 -apple-system,BlinkMacSystemFont,sans-serif;text-transform:uppercase;letter-spacing:.08em}.grid{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:baseline;font-size:13px}.label{color:#999}.value{text-align:right;font-variant-numeric:tabular-nums}button{margin-top:16px;width:100%;padding:10px 12px;border:1px solid #444;border-radius:10px;background:#222;color:#eee;font:14px -apple-system,BlinkMacSystemFont,sans-serif}#stage{position:relative;min-width:0;min-height:0;touch-action:none;overflow:hidden;background:linear-gradient(#1d1d1d 1px,transparent 1px),linear-gradient(90deg,#1d1d1d 1px,transparent 1px);background-size:32px 32px}canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}#hint{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;color:#666;font:16px -apple-system,BlinkMacSystemFont,sans-serif;text-align:center;padding:24px}#puppetWrap{position:absolute;top:16px;right:16px;width:min(300px,calc(100% - 32px));height:240px;border:1px solid #ffffff1f;border-radius:16px;overflow:hidden;background:linear-gradient(#ffffff0f,#ffffff05);backdrop-filter:blur(8px);box-shadow:0 10px 30px #0006}#puppetTitle{position:absolute;top:10px;left:12px;z-index:10;color:#cfcfcf;font:11px -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:.08em;text-transform:uppercase}#puppetScene{position:absolute;inset:0;perspective:900px;perspective-origin:50% 42%;overflow:hidden}#devicePlane{position:absolute;left:50%;top:62%;width:180px;height:120px;transform:translate3d(-50%,-50%,0) rotateX(68deg);border-radius:14px;background:linear-gradient(#ffffff1f,#ffffff08),linear-gradient(90deg,#ffffff0d 1px,transparent 1px),linear-gradient(#ffffff0d 1px,transparent 1px),#1a1a1a;background-size:auto,24px 24px,24px 24px,auto;border:1px solid #ffffff1f}#pencilRig{position:absolute;width:0;height:0;transform-style:preserve-3d}#pencilRig.hidden{opacity:.35}#pencilModel{position:absolute;width:0;height:0;transform-style:preserve-3d}.piece{position:absolute}.shaft{width:12px;height:122px;left:-6px;top:-144px;border-radius:8px;background:linear-gradient(90deg,#dadada,#fff 50%,#d3d3d3);transform:translateZ(8px)}.cap{width:13px;height:22px;left:-6.5px;top:-162px;border-radius:9px 9px 6px 6px;background:linear-gradient(90deg,#d6d6d6,#fafafa,#d8d8d8);transform:translateZ(8px)}.band{width:14px;height:10px;left:-7px;top:-56px;border-radius:6px;background:linear-gradient(90deg,#c9c9c9,#f0f0f0,#c9c9c9);transform:translateZ(8px)}.tip{width:10px;height:26px;left:-5px;top:-34px;border-radius:5px;background:linear-gradient(90deg,#d9d9d9,#f7f7f7,#d0d0d0);transform:translateZ(8px);transform-origin:50% 0}.nib{width:5px;height:12px;left:-2.5px;top:-12px;border-radius:3px 3px 5px 5px;background:linear-gradient(90deg,#d2d2d2,#fbfbfb,#c5c5c5);transform:translateZ(8px);transform-origin:50% 0}#tipDot{position:absolute;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#fffffff0;box-shadow:0 0 0 4px #ffffff0f,0 0 28px #ffffff2e}#shadow{position:absolute;left:50%;top:62%;width:40px;height:18px;margin:-9px 0 0 -20px;border-radius:50%;background:radial-gradient(ellipse,#0007,#0000);filter:blur(6px);pointer-events:none}#puppetReadout{position:absolute;left:12px;right:12px;bottom:10px;z-index:10;color:#ddd;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}@media(max-width:760px){#app{grid-template-columns:1fr;grid-template-rows:minmax(290px,44vh) 1fr}#panel{border-right:0;border-bottom:1px solid #333}#puppetWrap{width:min(260px,calc(100% - 20px));height:210px;top:10px;right:10px}}
-</style></head><body><div id="app"><section id="panel"><h1>Apple Pencil Data Monitor</h1><p class="sub">The line shows x/y. The fixed 3D puppet shows angle and pressure only.</p><div class="status" id="status">Waiting for input…</div><div class="section">Identity</div><div class="grid"><div class="label">pointerType</div><div class="value" id="pointerType">—</div><div class="label">pointerId</div><div class="value" id="pointerId">—</div><div class="label">buttons</div><div class="value" id="buttons">—</div></div><div class="section">Position</div><div class="grid"><div class="label">x</div><div class="value" id="x">—</div><div class="label">y</div><div class="value" id="y">—</div><div class="label">movementX</div><div class="value" id="movementX">—</div><div class="label">movementY</div><div class="value" id="movementY">—</div></div><div class="section">Pencil / Pointer Sensors</div><div class="grid"><div class="label">pressure</div><div class="value" id="pressure">—</div><div class="label">tangentialPressure</div><div class="value" id="tangentialPressure">—</div><div class="label">tiltX</div><div class="value" id="tiltX">—</div><div class="label">tiltY</div><div class="value" id="tiltY">—</div><div class="label">altitudeAngle</div><div class="value" id="altitudeAngle">—</div><div class="label">azimuthAngle</div><div class="value" id="azimuthAngle">—</div><div class="label">twist</div><div class="value" id="twist">—</div></div><div class="section">Timing</div><div class="grid"><div class="label">event type</div><div class="value" id="eventType">—</div><div class="label">timestamp</div><div class="value" id="timestamp">—</div><div class="label">estimated rate</div><div class="value" id="rate">—</div><div class="label">coalesced samples</div><div class="value" id="coalesced">—</div></div><button id="clear">Clear trail</button></section><section id="stage"><canvas id="canvas"></canvas><div id="puppetWrap" aria-hidden="true"><div id="puppetTitle">3D Pencil Puppet</div><div id="puppetScene"><div id="shadow"></div><div id="devicePlane"></div><div id="pencilRig" class="hidden"><div id="pencilModel"><div class="piece cap"></div><div class="piece shaft"></div><div class="piece band"></div><div class="piece tip" id="tip"></div><div class="piece nib" id="nib"></div></div></div><div id="tipDot"></div></div><div id="puppetReadout">Awaiting pen input</div></div><div id="hint">Touch or draw here with Apple Pencil</div></section></div><script>
-(()=>{const stage=document.getElementById('stage'),canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d',{alpha:true}),hint=document.getElementById('hint'),status=document.getElementById('status'),scene=document.getElementById('puppetScene'),rig=document.getElementById('pencilRig'),model=document.getElementById('pencilModel'),shadow=document.getElementById('shadow'),tip=document.getElementById('tip'),nib=document.getElementById('nib'),dot=document.getElementById('tipDot'),readout=document.getElementById('puppetReadout');const ids=['pointerType','pointerId','buttons','x','y','movementX','movementY','pressure','tangentialPressure','tiltX','tiltY','altitudeAngle','azimuthAngle','twist','eventType','timestamp','rate','coalesced'],out=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));let lastT=null,rateEMA=null,lastPos=null,drawing=false;const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),deg=r=>r*180/Math.PI,fmt=(v,d=4)=>v==null||Number.isNaN(v)?'unsupported':typeof v==='number'?(Number.isInteger(v)?String(v):v.toFixed(d)):String(v);function resize(){const dpr=devicePixelRatio||1,r=stage.getBoundingClientRect();canvas.width=Math.max(1,Math.round(r.width*dpr));canvas.height=Math.max(1,Math.round(r.height*dpr));canvas.style.width=r.width+'px';canvas.style.height=r.height+'px';ctx.setTransform(dpr,0,0,dpr,0,0);ctx.lineCap='round';ctx.lineJoin='round'}function point(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}function puppet(e){const pen=e.pointerType==='pen',r=scene.getBoundingClientRect(),x=r.width*.5,y=r.height*.74;rig.classList.toggle('hidden',!pen);let rx=0,ry=0,rz=0,alt=null,azi=null;if(Number.isFinite(e.altitudeAngle)&&Number.isFinite(e.azimuthAngle)){alt=deg(e.altitudeAngle);azi=deg(e.azimuthAngle);const t=clamp(90-alt,0,85);rx=t*Math.sin(e.azimuthAngle);ry=-t*Math.cos(e.azimuthAngle)}else{rx=clamp((e.tiltY||0)*.9,-65,65);ry=clamp(-(e.tiltX||0)*.9,-65,65);alt=90-Math.min(89,Math.hypot(e.tiltX||0,e.tiltY||0)*.8)}rz=Number.isFinite(e.twist)?e.twist:(azi??0);const p=clamp(Number.isFinite(e.pressure)?e.pressure:0,0,1),z=26+(e.buttons===0?18:0)-p*14;rig.style.transform=`translate3d(${x}px,${y}px,${z}px)`;model.style.transform=`rotateZ(${rz.toFixed(2)}deg) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) scale(.92)`;tip.style.transform=`translateZ(8px) scaleY(${(1-p*.14).toFixed(3)})`;nib.style.transform=`translateZ(8px) translateY(${(p*4).toFixed(2)}px) scaleY(${(1-p*.2).toFixed(3)})`;shadow.style.transform=`scale(${(.95+p*1.45+(pen?.15:0)).toFixed(3)})`;shadow.style.opacity=(.16+p*.24+(e.buttons===0?.02:.08)).toFixed(3);dot.style.left=x+'px';dot.style.top=y+'px';dot.style.opacity=pen?'1':'.4';readout.textContent=`alt ${alt==null?'—':alt.toFixed(1)+'°'} · azi ${azi==null?'—':azi.toFixed(1)+'°'} · roll ${rz.toFixed(1)}° · p ${p.toFixed(3)}`}function update(e){hint.style.display='none';const p=point(e),dt=lastT==null?null:e.timeStamp-lastT;if(dt>0){const hz=1000/dt;rateEMA=rateEMA==null?hz:rateEMA*.85+hz*.15}lastT=e.timeStamp;const c=typeof e.getCoalescedEvents==='function'?e.getCoalescedEvents():[];out.pointerType.textContent=fmt(e.pointerType);out.pointerId.textContent=fmt(e.pointerId);out.buttons.textContent=fmt(e.buttons);out.x.textContent=fmt(p.x,2);out.y.textContent=fmt(p.y,2);out.movementX.textContent=fmt(e.movementX,2);out.movementY.textContent=fmt(e.movementY,2);out.pressure.textContent=fmt(e.pressure,5);out.tangentialPressure.textContent=fmt(e.tangentialPressure,5);out.tiltX.textContent=fmt(e.tiltX,2)+'°';out.tiltY.textContent=fmt(e.tiltY,2)+'°';out.altitudeAngle.textContent=fmt(e.altitudeAngle,5)+' rad';out.azimuthAngle.textContent=fmt(e.azimuthAngle,5)+' rad';out.twist.textContent=fmt(e.twist,2)+'°';out.eventType.textContent=e.type;out.timestamp.textContent=fmt(e.timeStamp,3)+' ms';out.rate.textContent=rateEMA==null?'—':rateEMA.toFixed(1)+' Hz';out.coalesced.textContent=String(c.length);status.textContent=e.pointerType==='pen'?'Pen input detected. Line = x/y; fixed puppet = angle + pressure.':'Use Apple Pencil for pen data.';puppet(e);if(drawing&&e.buttons!==0){const ss=c.length?c:[e];for(const s of ss){const q=point(s);if(lastPos){ctx.beginPath();ctx.moveTo(lastPos.x,lastPos.y);ctx.lineTo(q.x,q.y);ctx.lineWidth=1.5+(s.pressure||0)*7;ctx.strokeStyle='#f3f3f3';ctx.stroke()}lastPos=q}}}function down(e){drawing=true;lastPos=point(e);try{canvas.setPointerCapture(e.pointerId)}catch{}update(e)}function up(e){update(e);drawing=false;lastPos=null;try{canvas.releasePointerCapture(e.pointerId)}catch{}}canvas.addEventListener('pointerdown',down,{passive:false});canvas.addEventListener('pointermove',update,{passive:false});canvas.addEventListener('pointerup',up,{passive:false});canvas.addEventListener('pointercancel',up,{passive:false});canvas.addEventListener('pointerenter',update,{passive:true});canvas.addEventListener('pointerrawupdate',update,{passive:true});document.getElementById('clear').addEventListener('click',()=>ctx.clearRect(0,0,canvas.width,canvas.height));addEventListener('resize',resize);resize()})();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#111">
+<title>Apple Pencil Data Monitor</title>
+<style>
+*{box-sizing:border-box}html,body{width:100%;height:100%}body{margin:0;background:#111;color:#eee;overflow:hidden;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;user-select:none;-webkit-user-select:none}#app{display:grid;grid-template-columns:minmax(300px,38vw) 1fr;width:100vw;height:100vh}#panel{padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));overflow:auto;border-right:1px solid #333;background:#151515}h1{margin:0 0 6px;font:700 18px/1.25 -apple-system,BlinkMacSystemFont,sans-serif}.sub{margin:0 0 16px;color:#aaa;font:12px/1.4 -apple-system,BlinkMacSystemFont,sans-serif}.status{padding:10px 12px;border:1px solid #333;border-radius:10px;margin-bottom:14px;font:13px/1.4 -apple-system,BlinkMacSystemFont,sans-serif}.section{margin:16px 0 7px;color:#bbb;font:600 11px/1.2 -apple-system,BlinkMacSystemFont,sans-serif;text-transform:uppercase;letter-spacing:.08em}.grid{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:baseline;font-size:13px}.label{color:#999}.value{text-align:right;font-variant-numeric:tabular-nums}button{margin-top:16px;width:100%;padding:10px 12px;border:1px solid #444;border-radius:10px;background:#222;color:#eee;font:14px -apple-system,BlinkMacSystemFont,sans-serif}#stage{position:relative;min-width:0;min-height:0;touch-action:none;overflow:hidden;background:linear-gradient(#1d1d1d 1px,transparent 1px),linear-gradient(90deg,#1d1d1d 1px,transparent 1px);background-size:32px 32px}canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}#hint{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;color:#666;font:16px -apple-system,BlinkMacSystemFont,sans-serif;text-align:center;padding:24px}#puppetWrap{position:absolute;top:16px;right:16px;width:min(300px,calc(100% - 32px));height:240px;border:1px solid #ffffff1f;border-radius:16px;overflow:hidden;background:linear-gradient(#ffffff0f,#ffffff05);backdrop-filter:blur(8px);box-shadow:0 10px 30px #0006}#puppetTitle{position:absolute;top:10px;left:12px;z-index:10;color:#cfcfcf;font:11px -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:.08em;text-transform:uppercase}#puppetScene{position:absolute;inset:0;perspective:900px;perspective-origin:50% 42%;overflow:hidden}#devicePlane{position:absolute;left:50%;top:62%;width:180px;height:120px;transform:translate3d(-50%,-50%,0) rotateX(68deg);border-radius:14px;background:linear-gradient(#ffffff1f,#ffffff08),linear-gradient(90deg,#ffffff0d 1px,transparent 1px),linear-gradient(#ffffff0d 1px,transparent 1px),#1a1a1a;background-size:auto,24px 24px,24px 24px,auto;border:1px solid #ffffff1f}#pencilRig,#pencilOrbit,#pencilModel{position:absolute;width:0;height:0;transform-style:preserve-3d;transform-origin:0 0 0}#pencilRig.hidden{opacity:.35}.piece{position:absolute}.shaft{width:12px;height:122px;left:-6px;top:-144px;border-radius:8px;background:linear-gradient(90deg,#dadada,#fff 50%,#d3d3d3)}.cap{width:13px;height:22px;left:-6.5px;top:-162px;border-radius:9px 9px 6px 6px;background:linear-gradient(90deg,#d6d6d6,#fafafa,#d8d8d8)}.band{width:14px;height:10px;left:-7px;top:-56px;border-radius:6px;background:linear-gradient(90deg,#c9c9c9,#f0f0f0,#c9c9c9)}.tip{width:10px;height:26px;left:-5px;top:-34px;border-radius:5px;background:linear-gradient(90deg,#d9d9d9,#f7f7f7,#d0d0d0);transform-origin:50% 100%}.nib{width:5px;height:12px;left:-2.5px;top:-12px;border-radius:3px 3px 5px 5px;background:linear-gradient(90deg,#d2d2d2,#fbfbfb,#c5c5c5);transform-origin:50% 100%}#tipDot{position:absolute;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:#fffffff0;box-shadow:0 0 0 4px #ffffff0f,0 0 28px #ffffff2e}#shadow{position:absolute;left:50%;top:62%;width:40px;height:18px;margin:-9px 0 0 -20px;border-radius:50%;background:radial-gradient(ellipse,#0007,#0000);filter:blur(6px);pointer-events:none}#puppetReadout{position:absolute;left:12px;right:12px;bottom:10px;z-index:10;color:#ddd;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}@media(max-width:760px){#app{grid-template-columns:1fr;grid-template-rows:minmax(290px,44vh) 1fr}#panel{border-right:0;border-bottom:1px solid #333}#puppetWrap{width:min(260px,calc(100% - 20px));height:210px;top:10px;right:10px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <section id="panel">
+    <h1>Apple Pencil Data Monitor</h1>
+    <p class="sub">The line shows x/y. The 3D puppet locks the nib tip in XYZ and lets the Pencil rotate freely about that point.</p>
+    <div class="status" id="status">Waiting for input…</div>
+    <div class="section">Identity</div>
+    <div class="grid"><div class="label">pointerType</div><div class="value" id="pointerType">—</div><div class="label">pointerId</div><div class="value" id="pointerId">—</div><div class="label">buttons</div><div class="value" id="buttons">—</div></div>
+    <div class="section">Position</div>
+    <div class="grid"><div class="label">x</div><div class="value" id="x">—</div><div class="label">y</div><div class="value" id="y">—</div><div class="label">movementX</div><div class="value" id="movementX">—</div><div class="label">movementY</div><div class="value" id="movementY">—</div></div>
+    <div class="section">Pencil / Pointer Sensors</div>
+    <div class="grid"><div class="label">pressure</div><div class="value" id="pressure">—</div><div class="label">tangentialPressure</div><div class="value" id="tangentialPressure">—</div><div class="label">tiltX</div><div class="value" id="tiltX">—</div><div class="label">tiltY</div><div class="value" id="tiltY">—</div><div class="label">altitudeAngle</div><div class="value" id="altitudeAngle">—</div><div class="label">azimuthAngle</div><div class="value" id="azimuthAngle">—</div><div class="label">twist</div><div class="value" id="twist">—</div></div>
+    <div class="section">Timing</div>
+    <div class="grid"><div class="label">event type</div><div class="value" id="eventType">—</div><div class="label">timestamp</div><div class="value" id="timestamp">—</div><div class="label">estimated rate</div><div class="value" id="rate">—</div><div class="label">coalesced samples</div><div class="value" id="coalesced">—</div></div>
+    <button id="clear">Clear trail</button>
+  </section>
+  <section id="stage">
+    <canvas id="canvas"></canvas>
+    <div id="puppetWrap" aria-hidden="true">
+      <div id="puppetTitle">3D Pencil Puppet</div>
+      <div id="puppetScene">
+        <div id="shadow"></div>
+        <div id="devicePlane"></div>
+        <div id="pencilRig" class="hidden">
+          <div id="pencilOrbit">
+            <div id="pencilModel">
+              <div class="piece cap"></div>
+              <div class="piece shaft"></div>
+              <div class="piece band"></div>
+              <div class="piece tip" id="tip"></div>
+              <div class="piece nib" id="nib"></div>
+            </div>
+          </div>
+        </div>
+        <div id="tipDot"></div>
+      </div>
+      <div id="puppetReadout">Awaiting pen input</div>
+    </div>
+    <div id="hint">Touch or draw here with Apple Pencil</div>
+  </section>
+</div>
+<script>
+(()=>{
+  const stage=document.getElementById('stage'),canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d',{alpha:true}),hint=document.getElementById('hint'),status=document.getElementById('status'),scene=document.getElementById('puppetScene'),rig=document.getElementById('pencilRig'),orbit=document.getElementById('pencilOrbit'),model=document.getElementById('pencilModel'),shadow=document.getElementById('shadow'),tip=document.getElementById('tip'),nib=document.getElementById('nib'),dot=document.getElementById('tipDot'),readout=document.getElementById('puppetReadout');
+  const ids=['pointerType','pointerId','buttons','x','y','movementX','movementY','pressure','tangentialPressure','tiltX','tiltY','altitudeAngle','azimuthAngle','twist','eventType','timestamp','rate','coalesced'],out=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
+  let lastT=null,rateEMA=null,lastPos=null,drawing=false;
+  const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),deg=r=>r*180/Math.PI,rad=d=>d*Math.PI/180,fmt=(v,d=4)=>v==null||Number.isNaN(v)?'unsupported':typeof v==='number'?(Number.isInteger(v)?String(v):v.toFixed(d)):String(v);
+
+  function resize(){
+    const dpr=devicePixelRatio||1,r=stage.getBoundingClientRect();
+    canvas.width=Math.max(1,Math.round(r.width*dpr));canvas.height=Math.max(1,Math.round(r.height*dpr));canvas.style.width=r.width+'px';canvas.style.height=r.height+'px';ctx.setTransform(dpr,0,0,dpr,0,0);ctx.lineCap='round';ctx.lineJoin='round';
+  }
+  function point(e){const r=canvas.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
+
+  function pencilAngles(e){
+    if(Number.isFinite(e.altitudeAngle)&&Number.isFinite(e.azimuthAngle)){
+      return{altitude:clamp(e.altitudeAngle,0,Math.PI/2),azimuth:e.azimuthAngle};
+    }
+    const tx=Math.tan(rad(Number.isFinite(e.tiltX)?e.tiltX:0));
+    const ty=Math.tan(rad(Number.isFinite(e.tiltY)?e.tiltY:0));
+    const slope=Math.hypot(tx,ty);
+    return{
+      altitude:Math.atan2(1,slope),
+      azimuth:slope<1e-9?0:Math.atan2(tx,-ty)
+    };
+  }
+
+  function puppet(e){
+    const pen=e.pointerType==='pen',r=scene.getBoundingClientRect();
+    const x=r.width*.5,y=r.height*.74,z=26;
+    rig.classList.toggle('hidden',!pen);
+
+    const angles=pencilAngles(e);
+    const alt=deg(angles.altitude);
+    const azi=((deg(angles.azimuth)%360)+360)%360;
+    const roll=Number.isFinite(e.twist)?e.twist:0;
+    const p=clamp(Number.isFinite(e.pressure)?e.pressure:0,0,1);
+
+    // Ball-joint constraint: the rig origin is the physical nib tip. Its XYZ never changes.
+    // Orbit controls shaft direction around that point; model roll is local to the Pencil axis.
+    rig.style.transform=`translate3d(${x}px,${y}px,${z}px)`;
+    orbit.style.transform=`rotateZ(${azi.toFixed(3)}deg) rotateX(${-alt.toFixed(3)}deg)`;
+    model.style.transform=`rotateY(${roll.toFixed(3)}deg) scale(.92)`;
+
+    // Pressure deformation is anchored at each piece's lower end, so it cannot move the nib tip.
+    tip.style.transform=`scaleY(${(1-p*.06).toFixed(3)})`;
+    nib.style.transform=`scaleY(${(1-p*.20).toFixed(3)})`;
+
+    shadow.style.transform=`scale(${(.95+p*1.45+(pen?.15:0)).toFixed(3)})`;
+    shadow.style.opacity=(.16+p*.24+(e.buttons===0?.02:.08)).toFixed(3);
+    dot.style.left=x+'px';dot.style.top=y+'px';dot.style.opacity=pen?'1':'.4';
+    readout.textContent=`alt ${alt.toFixed(1)}° · azi ${azi.toFixed(1)}° · roll ${roll.toFixed(1)}° · p ${p.toFixed(3)} · tip XYZ locked`;
+  }
+
+  function update(e){
+    hint.style.display='none';
+    const p=point(e),dt=lastT==null?null:e.timeStamp-lastT;
+    if(dt>0){const hz=1000/dt;rateEMA=rateEMA==null?hz:rateEMA*.85+hz*.15}lastT=e.timeStamp;
+    const c=typeof e.getCoalescedEvents==='function'?e.getCoalescedEvents():[];
+    out.pointerType.textContent=fmt(e.pointerType);out.pointerId.textContent=fmt(e.pointerId);out.buttons.textContent=fmt(e.buttons);out.x.textContent=fmt(p.x,2);out.y.textContent=fmt(p.y,2);out.movementX.textContent=fmt(e.movementX,2);out.movementY.textContent=fmt(e.movementY,2);out.pressure.textContent=fmt(e.pressure,5);out.tangentialPressure.textContent=fmt(e.tangentialPressure,5);out.tiltX.textContent=fmt(e.tiltX,2)+'°';out.tiltY.textContent=fmt(e.tiltY,2)+'°';out.altitudeAngle.textContent=fmt(e.altitudeAngle,5)+' rad';out.azimuthAngle.textContent=fmt(e.azimuthAngle,5)+' rad';out.twist.textContent=fmt(e.twist,2)+'°';out.eventType.textContent=e.type;out.timestamp.textContent=fmt(e.timeStamp,3)+' ms';out.rate.textContent=rateEMA==null?'—':rateEMA.toFixed(1)+' Hz';out.coalesced.textContent=String(c.length);
+    status.textContent=e.pointerType==='pen'?'Pen input detected. Line = x/y; puppet tip XYZ locked; body rotation free.':'Use Apple Pencil for pen data.';
+    puppet(e);
+    if(drawing&&e.buttons!==0){const ss=c.length?c:[e];for(const s of ss){const q=point(s);if(lastPos){ctx.beginPath();ctx.moveTo(lastPos.x,lastPos.y);ctx.lineTo(q.x,q.y);ctx.lineWidth=1.5+(s.pressure||0)*7;ctx.strokeStyle='#f3f3f3';ctx.stroke()}lastPos=q}}
+  }
+
+  function down(e){drawing=true;lastPos=point(e);try{canvas.setPointerCapture(e.pointerId)}catch{}update(e)}
+  function up(e){update(e);drawing=false;lastPos=null;try{canvas.releasePointerCapture(e.pointerId)}catch{}}
+  canvas.addEventListener('pointerdown',down,{passive:false});canvas.addEventListener('pointermove',update,{passive:false});canvas.addEventListener('pointerup',up,{passive:false});canvas.addEventListener('pointercancel',up,{passive:false});canvas.addEventListener('pointerenter',update,{passive:true});canvas.addEventListener('pointerrawupdate',update,{passive:true});document.getElementById('clear').addEventListener('click',()=>ctx.clearRect(0,0,canvas.width,canvas.height));addEventListener('resize',resize);resize();
+})();
+</script>
+</body>
+</html>
