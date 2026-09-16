@@ -6,25 +6,21 @@
 
 ### Software
 
-I use [**Arc**](https://arc.net/) as well as [**Dia**](https://diabrowser.com/) for my main browsers. 
+I use [**Arc**](https://arc.net/) as my main browser. A growing amount of my development work now happens through AI coding agents and automation tools alongside a conventional editor.
 
 <br>
 
-My main IDE at the moment is [**Antigravity**](https://antigravity.google). I'm debating whether or not to switch over to either cursor or IntelliJ though since i'm still learning.
+For engineering work, I use Onshape and Fusion 360 heavily, including Fusion 360 CAM for CNC work. I also spend a lot of time building small tools, automations, and web utilities around my own workflows.
 
 <br>
 
 ### Hardware
 
-Relatively low key at the moment. Main machine: macbook air m3 16gb. I built a pc ~8 years ago that i've upgraded a few times, but it's seen better days. 
+My main computer is a MacBook Air M3 with 16 GB of memory. I also use an 11-inch iPad Pro with Apple Pencil and a Windows desktop with an RTX 2070 Super.
 
 <br>
 
-I also use a pixel 7 pro as my phone and have a galaxy watch 6 classic for my smartwatch.
-
-<br>
-
-3D printing has been an interest of mine for a few years now. I started in 2021 with a creality ender 3, and have since upgraded to a flashforge AD5M. i've mainly used it for practical purposes like household upgrades and printing FRC parts. I've experimented on it with more exotic and "unsupported" filaments like nylon, polycarbonate, and carbon fiber composites.
+3D printing has been an interest of mine since 2021. I started with a Creality Ender 3 and later moved to a FlashForge Adventurer 5M. Most of my printing has been practical: robotics parts, fixtures, household parts, and experiments with materials including nylon, polycarbonate, and carbon-fiber composites.
 
 <br>
 
@@ -32,6 +28,4 @@ I also use a pixel 7 pro as my phone and have a galaxy watch 6 classic for my sm
 
 ## Photography
 
-I've been taking photos since I was about 10, but I started getting more serious around 2023. I haven't had any formal photography training but learned a lot through taking many roller coaster photos on trips.
-
-(insert photos here)
+I've been taking photos since I was about 10 and started getting more serious around 2023. A lot of the learning came from shooting roller coasters and travel, where fast motion, awkward lighting, and bad vantage points force you to get technically competent quickly.
