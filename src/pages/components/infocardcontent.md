@@ -1,20 +1,20 @@
 # Hello! I'm Bryce.
 
-I'm a rising freshman Civil Engineering student from Santa Clarita, CA.
+I'm a first-year community college student studying Mechanical Engineering in Southern California and preparing to transfer to a four-year university.
 
-I'm interested in transit and sustainable development, additive and subtractive manufacturing, CAD and automation, and mechatronics. 
-
-<br>
-
-I'm proficient in CAD, particularly Onshape and Fusion 360. (I'll add some of my work to this website soon.)
+I'm interested in robotics and mechatronics, vehicle systems, manufacturing, public transit, and the physical side of automation.
 
 <br>
 
-I've also worked with manufacturing, specifically 3D printing and CNC machining. Fusion 360 CAM is my software of choice for that.
+I work primarily in CAD with Onshape and Fusion 360, and I have experience taking designs through fabrication rather than stopping at the model.
 
 <br>
 
-Outside of engineering, some of my hobbies also include photography, travel, and riding roller coasters. I've ridden around 70 roller coasters globally including in Japan, Korea, and across the US.
+I've worked with 3D printing, CNC machining, and CAM for robotics and personal projects. Fusion 360 is still my main CAM tool.
+
+<br>
+
+Outside of engineering, I spend a lot of time on photography, travel, and roller coasters. I've ridden around 70 roller coasters in Japan, Korea, and across the US.
 
 ---
 
