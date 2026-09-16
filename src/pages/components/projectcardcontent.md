@@ -1,29 +1,29 @@
 # Projects
 
-I've participated heavily in the FIRST Robotics Competition on multiple teams.
+Robotics has been the main throughline of my engineering work. I've participated heavily in the FIRST Robotics Competition across several teams.
 
 <br>
 
-The bulk of my time was spent on [FRC 691](https://team691.org/), the team at my high school. I joined as a freshman and was one of the main design students until the end of the 2025 season. 
+The bulk of my high-school FRC work was on [FRC 691](https://team691.org/), where I joined as a freshman and became one of the main students doing mechanical design through the end of the 2025 season.
 
 <br>
 
-For the 2025 season I was also involved with FRC 980, a team based out of the San Fernando Valley, where I helped their CAD team.
+For the 2025 season I also worked with FRC 980 in the San Fernando Valley, helping its CAD team.
 
 <br>
 
-I'm currently involved in [FRC 11096](https://frc11096.org/), the FIRST Robotics Competition team which I started as a senior. I served as the team captain in its' rookie year, and I'm considering going into mentoring.
+As a senior, I founded [FRC 11096](https://frc11096.org/) and served as team captain during its rookie year. I led mechanical design, fabrication, and electrical work, and I'm continuing to stay involved with FRC after graduating.
 
 <br>
 
-In total, I've designed, iterated on, and helped build mechanisms for around 10 competition robots.
+Across those teams, I've designed, iterated on, and helped build mechanisms for roughly 10 competition robots.
 
 <br>
 
-I'm also currently working on projects for [hack club](https://hackclub.com/) YSWS programs.
+I'm now expanding from FRC into collegiate engineering projects, with particular interest in vehicle systems, robotics, manufacturing, and embedded/mechatronic work.
 
 <br>
 
 # Employment
 
-I'm about to start an internship at [LA Metro](https://www.metro.net/)!
+In 2026 I interned with [LA Metro](https://www.metro.net/), which gave me direct exposure to a large public transportation agency and reinforced my interest in transit systems and infrastructure.
